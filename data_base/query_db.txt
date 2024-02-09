@@ -1,0 +1,69 @@
+CREATE TABLE delivery
+(
+	id serial PRIMARY KEY,
+	delivery_date date NOT NULL,
+	curier_first_name varchar(25) NOT NULL,
+	curier_last_name varchar(25) NOT NULL
+);
+
+CREATE TABLE clients
+(
+	id serial PRIMARY KEY,
+	phone_number varchar(12) NOT NULL,
+	first_name varchar(25) NOT NULL,
+	last_name varchar(25) NOT NULL,
+	address varchar(100) NOT NULL
+);
+
+CREATE TABLE orders
+(
+	id serial PRIMARY KEY,
+	order_date date NOT NULL,
+	code varchar(15) NOT NULL,
+	status varchar(25),
+	fk_orders_clients int REFERENCES clients(id),
+	fk_orders_delivery int REFERENCES delivery(id)
+);
+
+CREATE TABLE payments
+(
+	id serial PRIMARY KEY,
+	payment_date date NOT NULL,
+	payment_sum real NOT NULL,
+	fk_payments_orders int UNIQUE REFERENCES orders(id)
+);
+
+CREATE TABLE manufacturers
+(
+	id serial PRIMARY KEY,
+	manufacturer_name varchar(25) NOT NULL,
+	country varchar(25) NOT NULL
+);
+
+CREATE TABLE goods
+(
+	id serial PRIMARY KEY,
+	product_name varchar(25) NOT NULL,
+	model varchar(25),
+	guarantee int NOT NULL,
+	price real NOT NULL,
+	description text NOT NULL,
+	fk_goods_manufacturers int REFERENCES manufacturers(id),
+	fk_goods_orders int REFERENCES orders(id)
+);
+
+CREATE TABLE storehouses
+(
+	id serial PRIMARY KEY,
+	address varchar(100) NOT NULL,
+	square real NOT NULL
+);
+
+CREATE TABLE goods_storehouses
+(
+	good_id int REFERENCES goods(id),
+	stock_iD int REFERENCES storehouses(id),
+	CONSTRAINT goods_storehouses_pk PRIMARY KEY (good_id, stock_id)
+);
+
+
