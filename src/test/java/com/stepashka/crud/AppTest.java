@@ -1,4 +1,4 @@
-package com.stepashka.ciir.crud;
+package com.stepashka.crud;
 
 import static org.junit.Assert.assertTrue;
 

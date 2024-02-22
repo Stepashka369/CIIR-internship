@@ -1,10 +1,10 @@
-package com.stepashka.ciir.crud.repository;
+package com.stepashka.crud.repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import com.stepashka.ciir.crud.entity.Client;
+import com.stepashka.crud.entity.Client;
 
 public class ClientDao implements AbstractDao<Client>{
 	private String sqlCreate = "INSERT INTO client (first_name, last_name, phone_number, address) VALUES (?, ?, ?, ?)";
@@ -22,7 +22,6 @@ public class ClientDao implements AbstractDao<Client>{
 		} catch (SQLException exception) {
 			// TODO loging
 		}
-		
 	}
 
 	@Override
@@ -44,3 +43,4 @@ public class ClientDao implements AbstractDao<Client>{
 	}
 
 }
+

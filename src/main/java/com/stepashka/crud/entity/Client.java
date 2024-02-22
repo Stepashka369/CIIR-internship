@@ -1,4 +1,4 @@
-package com.stepashka.ciir.crud.entity;
+package com.stepashka.crud.entity;
 
 public class Client {
 	private Integer id;
@@ -49,3 +49,4 @@ public class Client {
 	
 
 }
+

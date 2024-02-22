@@ -1,4 +1,4 @@
-package com.stepashka.ciir.crud.repository;
+package com.stepashka.crud.repository;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
