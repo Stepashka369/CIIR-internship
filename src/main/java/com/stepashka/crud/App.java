@@ -14,6 +14,6 @@ public class App {
 	   	ClientDao clientRepository = new ClientDao();
 	   	clientRepository.create(client);
 	   	ConnectionManager.getInstance().closeConnection();
-	      System.out.println( "Hello World!" );
+	    System.out.println( "Hello World!" );
 	 }
 }
