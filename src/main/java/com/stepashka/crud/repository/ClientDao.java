@@ -11,8 +11,7 @@ public class ClientDao implements AbstractDao<Client>{
 	
 	@Override
 	public void create(Client entity) {
-		Connection connection = ConnectionManager.getInstance().openConnection();
-		try {
+		try (Connection connection = DataSource.getConnection()){
 			PreparedStatement statement = connection.prepareStatement(sqlCreate);
 			statement.setString(1, entity.getFirstName());
 			statement.setString(2, entity.getLastName());
