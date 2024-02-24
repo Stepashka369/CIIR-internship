@@ -1,10 +1,8 @@
 package com.stepashka.crud;
 
-import org.apache.log4j.PropertyConfigurator;
-
+//import org.apache.log4j.PropertyConfigurator;
 import com.stepashka.crud.entity.Client;
 import com.stepashka.crud.repository.ClientDao;
-import com.stepashka.crud.repository.ConnectionManager;
 
 public class App {
 	 public static void main( String[] args ) {
