@@ -12,7 +12,7 @@ import com.zaxxer.hikari.HikariDataSource;
 public class DataSource {
 	private static final Logger logger = Logger.getLogger(DataSource.class);
 	private static HikariConfig config = new HikariConfig();
-	private static HikariDataSource dataSource;
+	private static HikariDataSource hikariDataSource;
 	private static String url; 
 	private static String username;
 	private static String password;
@@ -24,14 +24,14 @@ public class DataSource {
 	    config.setUsername(username);
 	    config.setPassword(password);
 	    config.setMaximumPoolSize(maxPoolSize);
-	    dataSource = new HikariDataSource(config);
+	    hikariDataSource = new HikariDataSource(config);
 	}
 
 	private DataSource() {
 	}
 	
 	public static Connection getConnection() throws SQLException{
-		return dataSource.getConnection();
+		return hikariDataSource.getConnection();
 	}
 	
 	private static void loadDatabaseInfo() {
@@ -42,8 +42,9 @@ public class DataSource {
 			username = config.getString("datasource.username");
 			password = config.getString("datasource.password");
 			maxPoolSize = config.getInteger("datasource.maximum-pool-size", 1);
+			throw new ConfigurationException();
 		} catch(ConfigurationException exception) {
-			logger.error(exception.getMessage());
+			logger.error("Property file not found");
 		}
 	}
 }
