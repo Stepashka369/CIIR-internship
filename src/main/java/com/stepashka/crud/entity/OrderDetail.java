@@ -12,10 +12,6 @@ public class OrderDetail {
 	private Payment payment;
 	//ManyToMany
 	private Set<Good> goods = new HashSet<>();
-	//ManyToOne
-	private Delivery delivery;
-	//ManyToOne
-	private Client client;
 	
 	public Integer getId() {
 		return id;
@@ -63,21 +59,5 @@ public class OrderDetail {
 
 	public void setGoods(Set<Good> goods) {
 		this.goods = goods;
-	}
-
-	public Delivery getDelivery() {
-		return delivery;
-	}
-
-	public void setDelivery(Delivery delivery) {
-		this.delivery = delivery;
-	}
-
-	public Client getClient() {
-		return client;
-	}
-
-	public void setClient(Client client) {
-		this.client = client;
 	}
 }

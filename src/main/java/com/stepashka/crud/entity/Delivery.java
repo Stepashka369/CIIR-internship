@@ -9,6 +9,7 @@ public class Delivery {
 	private LocalDate deliveryDate;
 	private String curierFirstName;
 	private String curierLastName;
+	//OneToMany
 	private Set<OrderDetail> orders = new HashSet<>();
 	
 	public Integer getId() {

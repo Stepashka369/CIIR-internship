@@ -11,10 +11,10 @@ public class Good {
 	private Float price;
 	private String description;
 	private Integer numberOfUnits; //для стороны товара указывает общее количество товара на всех складах, для стороны склада количество товара на конкретном складе 
-	//ManyToOne
-	private Manufacturer manufacturer;
 	//ManyToMany
-	private Set<Storehouse> storehouses = new HashSet<>();
+	private Set<Storehouse> storehouses;
+	//ManyToMany
+	private Set<OrderDetail> orders;
 	
 	public Integer getId() {
 		return id;
@@ -72,13 +72,7 @@ public class Good {
 		this.numberOfUnits = numberOfUnits;
 	}
 
-	public Manufacturer getManufacturer() {
-		return manufacturer;
-	}
-
-	public void setManufacturer(Manufacturer manufacturer) {
-		this.manufacturer = manufacturer;
-	}
+	
 
 	public Set<Storehouse> getStorehouses() {
 		return storehouses;
@@ -86,6 +80,14 @@ public class Good {
 
 	public void setStorehouses(Set<Storehouse> storehouses) {
 		this.storehouses = storehouses;
+	}
+
+	public Set<OrderDetail> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Set<OrderDetail> orders) {
+		this.orders = orders;
 	}
 	
 }

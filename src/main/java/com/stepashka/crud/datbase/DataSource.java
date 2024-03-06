@@ -1,4 +1,4 @@
-package com.stepashka.crud.repository;
+package com.stepashka.crud.datbase;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -30,21 +30,21 @@ public class DataSource {
 	private DataSource() {
 	}
 	
-	public static Connection getConnection() throws SQLException{
+	public static Connection getConnection() throws SQLException {
 		return hikariDataSource.getConnection();
 	}
 	
 	private static void loadDatabaseInfo() {
 		try {
 			PropertiesConfiguration config = new PropertiesConfiguration();
-			config.load("application.properties");
+			config.load("G:\\studies\\CIIR\\CIIR-internship\\src\\main\\resources\\application.properties");
 			url = config.getString("datasource.url");
 			username = config.getString("datasource.username");
 			password = config.getString("datasource.password");
 			maxPoolSize = config.getInteger("datasource.maximum-pool-size", 1);
-			throw new ConfigurationException();
 		} catch(ConfigurationException exception) {
 			logger.error("Property file not found");
+			
 		}
 	}
 }
