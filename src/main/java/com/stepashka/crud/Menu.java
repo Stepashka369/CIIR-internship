@@ -1,8 +1,6 @@
 package com.stepashka.crud;
 
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
 import org.apache.log4j.Logger;
 import com.stepashka.crud.entity.Manufacturer;
@@ -10,6 +8,8 @@ import com.stepashka.crud.entity.Storehouse;
 import com.stepashka.crud.repository.AbstractDao;
 import com.stepashka.crud.repository.ManufacturerDao;
 import com.stepashka.crud.repository.StorehouseDao;
+import com.stepashka.crud.utils.ManufacturerActions;
+import com.stepashka.crud.utils.StorehouseActions;
 
 public class Menu {
 	private static final Logger logger = Logger.getLogger(Menu.class);
@@ -50,7 +50,7 @@ public class Menu {
 		String choice = "";
 		
 		while(isAdminMenuCycle) {
-			System.out.println(">> 1 - Storehouse.%n>> 2 - Manufacturer.%n>> 3 - Good.%n>> 4 - Exit.");
+			System.out.println(">> 1 - Storehouse.\n>> 2 - Manufacturer.\n>> 3 - Good.\n>> 4 - Exit.");
 			choice = scanner.nextLine();
 			switch(choice) {
 				case "1":
@@ -82,28 +82,16 @@ public class Menu {
 				choice = scanner.nextLine();
 				switch(choice) {
 					case "1":
-						storehouseRep.save(Storehouse.createStorehouse(scanner));
+						StorehouseActions.createStorehouse(storehouseRep, scanner);
 						break;
 					case "2":
-						List<Storehouse> list = storehouseRep.findAll();
-						Storehouse.printList(list);
-						System.out.print("select storehouse you want to edit(input №)\n->");
-						Integer storehouseId = Integer.parseInt(scanner.nextLine());
-						Optional<Storehouse> storehouse = list.stream().filter(x -> x.getId().equals(storehouseId)).findFirst();
-						if(storehouse.isPresent()) {
-							storehouseRep.update(Storehouse.editStorehouse(storehouse.get(), scanner));
-						}
-						else {
-							System.out.print(">>storehouse not found\n");
-						}
+						StorehouseActions.editStorehouse(storehouseRep, scanner);
 						break;
 					case "3":
-						Storehouse.printList(storehouseRep.findAll());
+						StorehouseActions.printStorehouseList(storehouseRep);
 						break;
 					case "4":
-						Storehouse.printList(storehouseRep.findAll());
-						System.out.print("select storehouse you want to remove(input №)\n->");
-						storehouseRep.delete(Integer.parseInt(scanner.nextLine()));
+						StorehouseActions.deleteStorehouse(storehouseRep, scanner);
 						break;
 					case "5":
 						isStorehouseMenuCycle = false;
@@ -111,8 +99,6 @@ public class Menu {
 					default:
 						break;		
 				}
-			} catch(NullPointerException exception) {
-				System.out.print(">>incorrect input(empty string)\n");
 			} catch(NumberFormatException exception) {
 				System.out.print(">>incorrect input(not number)\n");
 			} catch(SQLException exception) {
@@ -124,8 +110,6 @@ public class Menu {
 	private void manufacturerActionMenu() {
 		boolean isManufacturerMenuCycle = true;
 		String choice = "";
-		List<Manufacturer> list;
-		Optional<Manufacturer> manufacturer;
 		
 		while(isManufacturerMenuCycle) {
 			try {
@@ -133,39 +117,19 @@ public class Menu {
 				choice = scanner.nextLine();
 				switch(choice) {
 					case "1":
-						manufacturerRep.save(Manufacturer.createManufacturer(scanner));
+						ManufacturerActions.createManufacturer(manufacturerRep, scanner);
 						break;
 					case "2":
-						list = manufacturerRep.findAll();
-						Manufacturer.printList(list);
-						System.out.print("select manufacturer you want to edit(input №)\n->");
-						Integer updateManufacturerId =  Integer.parseInt(scanner.nextLine());
-						manufacturer = list.stream().filter(x -> x.getId().equals(updateManufacturerId)).findFirst();
-						if(manufacturer.isPresent()) 
-							manufacturerRep.update(Manufacturer.editManufacturer(manufacturer.get(), scanner));
-						else 
-							System.out.print(">>manufacturer not found\n");
+						ManufacturerActions.editManufacturer(manufacturerRep, scanner);
 						break;
 					case "3":
-						Manufacturer.printList(manufacturerRep.findAll());
+						ManufacturerActions.printManufacturerList(manufacturerRep);
 						break;
 					case "4":
-						Manufacturer.printList(manufacturerRep.findAll());
-						System.out.print("select manufacturer you want to remove(input №)\n->");
-						manufacturerRep.delete(Integer.parseInt(scanner.nextLine()));
+						ManufacturerActions.deleteManufacturer(manufacturerRep, scanner);
 						break;
-					case "5":
-						list = manufacturerRep.findAll();
-						Manufacturer.printList(list);
-						System.out.print("select manufacturer you want to see goods(input №)\n->");
-						Integer findManufactureId = Integer.parseInt(scanner.nextLine());
-						manufacturer = list.stream().filter(x -> x.getId().equals(findManufactureId)).findFirst();
-						if(manufacturer.isPresent()) {
-							Manufacturer.printManufacturer(manufacturerRep.findById(manufacturer.get().getId()));
-						}
-						else {
-							System.out.print(">>manufacturer not found\n");
-						}
+					case "5":	
+						ManufacturerActions.printManufacturerGoods(manufacturerRep, scanner);
 						break;
 					case "6":
 						isManufacturerMenuCycle = false;
@@ -173,8 +137,6 @@ public class Menu {
 					default:
 						break;		
 				}
-			} catch(NullPointerException exception) {
-				System.out.print(">>incorrect input(empty string)\n");
 			} catch(NumberFormatException exception) {
 				System.out.print(">>incorrect input(not number)\n");
 			} catch(SQLException exception) {

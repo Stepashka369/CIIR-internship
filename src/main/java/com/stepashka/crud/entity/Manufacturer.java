@@ -43,48 +43,4 @@ public class Manufacturer {
 	public void setGoods(Set<Good> goods) {
 		this.goods = goods;
 	}
-	
-	public static Manufacturer createManufacturer(Scanner scanner) {
-		Manufacturer manufacturer = new Manufacturer();
-		
-		System.out.print("input manufacturer's name\n->");
-		manufacturer.setName(scanner.nextLine());
-		System.out.print("input manufacturer's country\n->");
-		manufacturer.setCountry(scanner.nextLine());
-
-		return manufacturer;
-	}
-	
-	public static Manufacturer editManufacturer(Manufacturer manufacturer, Scanner scanner) {
-		String choice = "";
-		
-		System.out.print("edit name(y/n)\n->");
-		choice = scanner.nextLine();
-		if((choice.toCharArray()[0] == 'Y' || choice.toCharArray()[0] == 'y') && choice.length() == 1) {
-			System.out.print("input manufacturer's name\n->");
-			manufacturer.setName(scanner.nextLine());
-		}
-		System.out.print("edit country(y/n)\n->");
-		choice = scanner.nextLine();
-		if((choice.toCharArray()[0] == 'Y' || choice.toCharArray()[0] == 'y') && choice.length() == 1) {
-			System.out.print("input country\n->");
-			manufacturer.setCountry(scanner.nextLine());
-		}
-		
-		return manufacturer;
-	}
-	
-	public static void printList(List<Manufacturer> list) {
-		System.out.printf("%-10s %-25s %-25s%n", "№", "NAME", "COUNTRY");
-		for(Manufacturer manufacturer : list) {
-			System.out.printf("%-10d %-25s %-25s\n", manufacturer.getId(), manufacturer.getName(), manufacturer.getCountry());
-		}
-	}
-	
-	public static void printManufacturer(Manufacturer manufacturer) {
-		System.out.printf("%-10s %-15s %-15s %-15s %-15s%n", "№", "NAME", "MODEL", "GUARANTEE", "PRICE");
-		for(Good good : manufacturer.getGoods()) {
-			System.out.printf("%-10d %-15s %-15s %-15d %-15.2f\n", good.getId(), good.getName(), good.getModel(), good.getGuarantee(), good.getPrice());
-		}
-	}
 }

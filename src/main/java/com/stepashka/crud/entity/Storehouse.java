@@ -44,16 +44,6 @@ public class Storehouse {
 		this.goods = goods;
 	}
 	
-	public static Storehouse createStorehouse(Scanner scanner) throws NullPointerException, NumberFormatException{
-		Storehouse storehouse = new Storehouse();
-		
-		System.out.print("input storehouse address\n->");
-		storehouse.setAddress(scanner.nextLine());
-		System.out.print("input storehouse square\n->");
-		storehouse.setSquare(Float.parseFloat(scanner.nextLine()));
-
-		return storehouse;
-	}
 	
 	public static Storehouse editStorehouse(Storehouse storehouse, Scanner scanner) throws NullPointerException, NumberFormatException{
 		String choice = "";
@@ -72,12 +62,5 @@ public class Storehouse {
 		}
 		
 		return storehouse;
-	}
-	
-	public static void printList(List<Storehouse> list) {
-		System.out.printf("%-10s %-25s %-25s%n", "№", "ADDRESS", "SQUARE");
-		for(Storehouse storehouse : list) {
-			System.out.printf("%-10d %-25s %-25s%n", storehouse.getId(), storehouse.getAddress(), storehouse.getSquare());
-		}
 	}
 }
