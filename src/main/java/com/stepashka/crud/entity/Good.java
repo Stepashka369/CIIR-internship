@@ -1,6 +1,5 @@
 package com.stepashka.crud.entity;
 
-import java.util.HashSet;
 import java.util.Set;
 
 public class Good {
@@ -71,8 +70,6 @@ public class Good {
 	public void setNumberOfUnits(Integer numberOfUnits) {
 		this.numberOfUnits = numberOfUnits;
 	}
-
-	
 
 	public Set<Storehouse> getStorehouses() {
 		return storehouses;

@@ -4,9 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
-
 import org.apache.log4j.Logger;
-
 import com.stepashka.crud.entity.Manufacturer;
 import com.stepashka.crud.entity.Storehouse;
 import com.stepashka.crud.repository.AbstractDao;
@@ -20,7 +18,7 @@ public class Menu {
 	private AbstractDao<Manufacturer> manufacturerRep = new ManufacturerDao();
 	
 	public void mainMenu() {
-		Boolean isMainMenuCycle = true;
+		boolean isMainMenuCycle = true;
 		String choice = "";
 		scanner = new Scanner(System.in); 
 		
@@ -48,7 +46,7 @@ public class Menu {
 
 	
 	private void adminMenu() {
-		Boolean isAdminMenuCycle = true;
+		boolean isAdminMenuCycle = true;
 		String choice = "";
 		
 		while(isAdminMenuCycle) {
@@ -75,7 +73,7 @@ public class Menu {
 	}
 	
 	private void storehouseActionMenu() {
-		Boolean isStorehouseMenuCycle = true;
+		boolean isStorehouseMenuCycle = true;
 		String choice = "";
 		
 		while(isStorehouseMenuCycle) {
@@ -124,7 +122,7 @@ public class Menu {
 	}
 	
 	private void manufacturerActionMenu() {
-		Boolean isManufacturerMenuCycle = true;
+		boolean isManufacturerMenuCycle = true;
 		String choice = "";
 		List<Manufacturer> list;
 		Optional<Manufacturer> manufacturer;
