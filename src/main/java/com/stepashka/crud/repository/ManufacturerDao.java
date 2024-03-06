@@ -3,17 +3,15 @@ package com.stepashka.crud.repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import com.stepashka.crud.datbase.DataSource;
 import com.stepashka.crud.entity.Good;
 import com.stepashka.crud.entity.Manufacturer;
-import com.stepashka.crud.entity.Storehouse;
+
 
 public class ManufacturerDao implements AbstractDao<Manufacturer>{
 	private static final String FIND_BY_ID_SQL = "SELECT t1.id AS manufacturer_id, t1.manufacturer_name, t1.country, "

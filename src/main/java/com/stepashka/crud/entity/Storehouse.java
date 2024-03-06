@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
+import com.stepashka.crud.repository.StorehouseDao;
+
 public class Storehouse {
 	private Integer id;
 	private String address;

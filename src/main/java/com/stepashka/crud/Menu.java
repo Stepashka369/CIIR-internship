@@ -50,7 +50,7 @@ public class Menu {
 		String choice = "";
 		
 		while(isAdminMenuCycle) {
-			System.out.println(">> 1 - Storehouse.\n>> 2 - Manufacturer.\n>> 3 - Good.\n>> 4 - Exit.");
+			System.out.println(">> 1 - Storehouse.%n>> 2 - Manufacturer.%n>> 3 - Good.%n>> 4 - Exit.");
 			choice = scanner.nextLine();
 			switch(choice) {
 				case "1":
@@ -89,7 +89,7 @@ public class Menu {
 						Storehouse.printList(list);
 						System.out.print("select storehouse you want to edit(input №)\n->");
 						Integer storehouseId = Integer.parseInt(scanner.nextLine());
-						Optional<Storehouse> storehouse = list.stream().filter(x -> x.getId() == storehouseId).findFirst();
+						Optional<Storehouse> storehouse = list.stream().filter(x -> x.getId().equals(storehouseId)).findFirst();
 						if(storehouse.isPresent()) {
 							storehouseRep.update(Storehouse.editStorehouse(storehouse.get(), scanner));
 						}
@@ -140,13 +140,11 @@ public class Menu {
 						Manufacturer.printList(list);
 						System.out.print("select manufacturer you want to edit(input №)\n->");
 						Integer updateManufacturerId =  Integer.parseInt(scanner.nextLine());
-						manufacturer = list.stream().filter(x -> x.getId() == updateManufacturerId).findFirst();
-						if(manufacturer.isPresent()) {
+						manufacturer = list.stream().filter(x -> x.getId().equals(updateManufacturerId)).findFirst();
+						if(manufacturer.isPresent()) 
 							manufacturerRep.update(Manufacturer.editManufacturer(manufacturer.get(), scanner));
-						}
-						else {
+						else 
 							System.out.print(">>manufacturer not found\n");
-						}
 						break;
 					case "3":
 						Manufacturer.printList(manufacturerRep.findAll());
@@ -161,7 +159,7 @@ public class Menu {
 						Manufacturer.printList(list);
 						System.out.print("select manufacturer you want to see goods(input №)\n->");
 						Integer findManufactureId = Integer.parseInt(scanner.nextLine());
-						manufacturer = list.stream().filter(x -> x.getId() == findManufactureId).findFirst();
+						manufacturer = list.stream().filter(x -> x.getId().equals(findManufactureId)).findFirst();
 						if(manufacturer.isPresent()) {
 							Manufacturer.printManufacturer(manufacturerRep.findById(manufacturer.get().getId()));
 						}
