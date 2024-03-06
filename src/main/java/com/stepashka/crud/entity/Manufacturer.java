@@ -1,8 +1,6 @@
 package com.stepashka.crud.entity;
 
 import java.util.HashSet;
-import java.util.List;
-import java.util.Scanner;
 import java.util.Set;
 
 public class Manufacturer {

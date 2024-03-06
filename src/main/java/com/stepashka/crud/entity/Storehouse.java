@@ -1,8 +1,6 @@
 package com.stepashka.crud.entity;
 
 import java.util.HashSet;
-import java.util.List;
-import java.util.Scanner;
 import java.util.Set;
 
 public class Storehouse {
@@ -42,25 +40,5 @@ public class Storehouse {
 
 	public void setGoods(Set<Good> goods) {
 		this.goods = goods;
-	}
-	
-	
-	public static Storehouse editStorehouse(Storehouse storehouse, Scanner scanner) throws NullPointerException, NumberFormatException{
-		String choice = "";
-		
-		System.out.print("edit address(y/n)\n->");
-		choice = scanner.nextLine();
-		if((choice.toCharArray()[0] == 'Y' || choice.toCharArray()[0] == 'y') && choice.length() == 1) {
-			System.out.print("input storehouse address\n->");
-			storehouse.setAddress(scanner.nextLine());
-		}
-		System.out.print("edit square(y/n)\n->");
-		choice = scanner.nextLine();
-		if((choice.toCharArray()[0] == 'Y' || choice.toCharArray()[0] == 'y') && choice.length() == 1) {
-			System.out.print("input square\n->");
-			storehouse.setSquare(Float.parseFloat(scanner.nextLine()));
-		}
-		
-		return storehouse;
 	}
 }
