@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
-import com.stepashka.crud.repository.StorehouseDao;
-
 public class Storehouse {
 	private Integer id;
 	private String address;
@@ -77,9 +75,9 @@ public class Storehouse {
 	}
 	
 	public static void printList(List<Storehouse> list) {
-		System.out.printf("%-10s %-25s %-25s\n", "№", "ADDRESS", "SQUARE");
+		System.out.printf("%-10s %-25s %-25s%n", "№", "ADDRESS", "SQUARE");
 		for(Storehouse storehouse : list) {
-			System.out.printf("%-10d %-25s %-25s\n", storehouse.getId(), storehouse.getAddress(), storehouse.getSquare());
+			System.out.printf("%-10d %-25s %-25s%n", storehouse.getId(), storehouse.getAddress(), storehouse.getSquare());
 		}
 	}
 }

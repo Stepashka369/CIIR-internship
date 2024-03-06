@@ -75,14 +75,14 @@ public class Manufacturer {
 	}
 	
 	public static void printList(List<Manufacturer> list) {
-		System.out.printf("%-10s %-25s %-25s\n", "№", "NAME", "COUNTRY");
+		System.out.printf("%-10s %-25s %-25s%n", "№", "NAME", "COUNTRY");
 		for(Manufacturer manufacturer : list) {
 			System.out.printf("%-10d %-25s %-25s\n", manufacturer.getId(), manufacturer.getName(), manufacturer.getCountry());
 		}
 	}
 	
 	public static void printManufacturer(Manufacturer manufacturer) {
-		System.out.printf("%-10s %-15s %-15s %-15s %-15s\n", "№", "NAME", "MODEL", "GUARANTEE", "PRICE");
+		System.out.printf("%-10s %-15s %-15s %-15s %-15s%n", "№", "NAME", "MODEL", "GUARANTEE", "PRICE");
 		for(Good good : manufacturer.getGoods()) {
 			System.out.printf("%-10d %-15s %-15s %-15d %-15.2f\n", good.getId(), good.getName(), good.getModel(), good.getGuarantee(), good.getPrice());
 		}
