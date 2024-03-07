@@ -3,11 +3,15 @@ package com.stepashka.crud;
 import java.sql.SQLException;
 import java.util.Scanner;
 import org.apache.log4j.Logger;
+
+import com.stepashka.crud.entity.Good;
 import com.stepashka.crud.entity.Manufacturer;
 import com.stepashka.crud.entity.Storehouse;
 import com.stepashka.crud.repository.AbstractDao;
+import com.stepashka.crud.repository.GoodDao;
 import com.stepashka.crud.repository.ManufacturerDao;
 import com.stepashka.crud.repository.StorehouseDao;
+import com.stepashka.crud.utils.GoodActions;
 import com.stepashka.crud.utils.ManufacturerActions;
 import com.stepashka.crud.utils.StorehouseActions;
 
@@ -16,6 +20,7 @@ public class Menu {
 	private Scanner scanner;
 	private AbstractDao<Storehouse> storehouseRep = new StorehouseDao();
 	private AbstractDao<Manufacturer> manufacturerRep = new ManufacturerDao();
+	private AbstractDao<Good> goodRep = new GoodDao();
 	
 	public void mainMenu() {
 		boolean isMainMenuCycle = true;
@@ -23,7 +28,7 @@ public class Menu {
 		scanner = new Scanner(System.in); 
 		
 		while(isMainMenuCycle) {
-			System.out.println(">> 1 - Admin.\n>> 2 - Client.\n>> 3 - Exit.");
+			System.out.print(">> 1 - Admin.\n>> 2 - Client.\n>> 3 - Exit.\n->");
 			choice = scanner.nextLine();
 			switch(choice) {
 				case "1":
@@ -50,7 +55,7 @@ public class Menu {
 		String choice = "";
 		
 		while(isAdminMenuCycle) {
-			System.out.println(">> 1 - Storehouse.\n>> 2 - Manufacturer.\n>> 3 - Good.\n>> 4 - Exit.");
+			System.out.print(">> 1 - Storehouse.\n>> 2 - Manufacturer.\n>> 3 - Good.\n>> 4 - Exit.\n->");
 			choice = scanner.nextLine();
 			switch(choice) {
 				case "1":
@@ -60,7 +65,7 @@ public class Menu {
 					manufacturerActionMenu();	
 					break;
 				case "3":
-						
+					goodActionMenu();
 					break;
 				case "4":
 					isAdminMenuCycle = false;
@@ -133,6 +138,44 @@ public class Menu {
 						break;
 					case "6":
 						isManufacturerMenuCycle = false;
+						break;
+					default:
+						break;		
+				}
+			} catch(NumberFormatException exception) {
+				System.out.print(">>incorrect input(not number)\n");
+			} catch(SQLException exception) {
+				logger.error(exception.getMessage());	
+			}
+		}
+	}
+	
+	private void goodActionMenu() {
+		boolean isGoodMenuCycle = true;
+		String choice = "";
+		
+		while(isGoodMenuCycle) {
+			try {
+				System.out.print(">> 1 - Add good.\n>> 2 - Update good info.\n>> 3 - Show good list.\n>> 4 - Delete good.\n>> 5 - Good in storehouses info.\n>> 6 - Exit.\n->");
+				choice = scanner.nextLine();
+				switch(choice) {
+					case "1":
+						GoodActions.createGood(goodRep, scanner);
+						break;
+					case "2":
+						//ManufacturerActions.editManufacturer(manufacturerRep, scanner);
+						break;
+					case "3":
+						GoodActions.printGoodList(goodRep);
+						break;
+					case "4":
+						GoodActions.deleteGood(goodRep, scanner);
+						break;
+					case "5":	
+						//ManufacturerActions.printManufacturerGoods(manufacturerRep, scanner);
+						break;
+					case "6":
+						isGoodMenuCycle = false;
 						break;
 					default:
 						break;		

@@ -9,6 +9,7 @@ public class Good {
 	private Integer guarantee;
 	private Float price;
 	private String description;
+	private Manufacturer manufacturer;
 	private Integer numberOfUnits; //для стороны товара указывает общее количество товара на всех складах, для стороны склада количество товара на конкретном складе 
 	//ManyToMany
 	private Set<Storehouse> storehouses;
@@ -85,6 +86,14 @@ public class Good {
 
 	public void setOrders(Set<OrderDetail> orders) {
 		this.orders = orders;
+	}
+
+	public Manufacturer getManufacturer() {
+		return manufacturer;
+	}
+
+	public void setManufacturer(Manufacturer manufacturer) {
+		this.manufacturer = manufacturer;
 	}
 	
 }
