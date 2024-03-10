@@ -9,6 +9,10 @@ import com.stepashka.crud.repository.AbstractDao;
 
 public class StorehouseActions {
 	
+	private StorehouseActions() {
+		throw new IllegalStateException("Utility class");
+	}
+	
 	public static Integer createStorehouse(AbstractDao<Storehouse> repository, Scanner scanner) throws SQLException, NumberFormatException {
 		Storehouse storehouse = new Storehouse();
 			

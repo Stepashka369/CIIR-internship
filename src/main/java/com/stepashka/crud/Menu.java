@@ -105,7 +105,7 @@ public class Menu {
 						break;		
 				}
 			} catch(NumberFormatException exception) {
-				System.out.print(">>incorrect input(not number)\n");
+				System.out.println(">>" + exception.getMessage());
 			} catch(SQLException exception) {
 				logger.error(exception.getMessage());	
 			}
@@ -143,7 +143,7 @@ public class Menu {
 						break;		
 				}
 			} catch(NumberFormatException exception) {
-				System.out.print(">>incorrect input(not number)\n");
+				System.out.println(">>" + exception.getMessage());
 			} catch(SQLException exception) {
 				logger.error(exception.getMessage());	
 			}
@@ -181,7 +181,7 @@ public class Menu {
 						break;		
 				}
 			} catch(NumberFormatException exception) {
-				System.out.print(">>incorrect input(not number)\n");
+				System.out.println(">>" + exception.getMessage());
 			} catch(SQLException exception) {
 				logger.error(exception.getMessage());	
 			}

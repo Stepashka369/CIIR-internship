@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import com.stepashka.crud.datbase.DataSource;
 import com.stepashka.crud.entity.Good;
 import com.stepashka.crud.entity.Manufacturer;
