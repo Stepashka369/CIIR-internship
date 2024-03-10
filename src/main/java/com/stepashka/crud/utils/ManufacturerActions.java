@@ -12,6 +12,11 @@ import com.stepashka.crud.repository.AbstractDao;
 
 
 public class ManufacturerActions {
+	
+	private ManufacturerActions() {
+		throw new IllegalStateException("Utility class");
+	}
+	
 	public static Integer createManufacturer(AbstractDao<Manufacturer> repository, Scanner scanner) throws SQLException {
 		Manufacturer manufacturer = new Manufacturer();
 			
@@ -86,7 +91,7 @@ public class ManufacturerActions {
 			if(!goods.isEmpty()) {
 				System.out.printf("%-10s %-15s %-15s %-15s %-15s%n", "№", "NAME", "MODEL", "GUARANTEE", "PRICE");
 				for(Good good : goods) {
-					System.out.printf("%-10d %-15s %-15s %-15d %-15.2f\n", good.getId(), good.getName(), good.getModel(), good.getGuarantee(), good.getPrice());
+					System.out.printf("%-10d %-15s %-15s %-15d %-15.2f%n", good.getId(), good.getName(), good.getModel(), good.getGuarantee(), good.getPrice());
 				}
 			}
 			else {

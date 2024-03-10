@@ -35,7 +35,7 @@ public class GoodDao implements AbstractDao<Good>{
 			ResultSet result = statement.executeQuery();
 			Good good = new Good();
 			good.setManufacturer(new Manufacturer());
-			good.setStorehouses(new HashMap<Storehouse, Integer>());
+			good.setStorehouses(new HashMap<>());
 			if(result.next()) {
 				good.setId(result.getInt("good_id"));
 				good.setName(result.getString("product_name"));

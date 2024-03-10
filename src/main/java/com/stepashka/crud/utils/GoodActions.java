@@ -13,6 +13,11 @@ import com.stepashka.crud.repository.AbstractDao;
 import com.stepashka.crud.repository.ManufacturerDao;
 
 public class GoodActions {
+	
+	private GoodActions() {
+		throw new IllegalStateException("Utility class");
+	}
+	
 	public static List<Good> printGoodList(AbstractDao<Good> repository) throws SQLException{
 		List<Good> list = repository.findAll();
 		
