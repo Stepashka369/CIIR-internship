@@ -1,5 +1,6 @@
 package com.stepashka.crud.entity;
 
+import java.util.Map;
 import java.util.Set;
 
 public class Good {
@@ -10,9 +11,8 @@ public class Good {
 	private Float price;
 	private String description;
 	private Manufacturer manufacturer;
-	private Integer numberOfUnits; //для стороны товара указывает общее количество товара на всех складах, для стороны склада количество товара на конкретном складе 
 	//ManyToMany
-	private Set<Storehouse> storehouses;
+	private Map<Storehouse, Integer> storehouses;
 	//ManyToMany
 	private Set<OrderDetail> orders;
 	
@@ -64,19 +64,11 @@ public class Good {
 		this.description = description;
 	}
 
-	public Integer getNumberOfUnits() {
-		return numberOfUnits;
-	}
-
-	public void setNumberOfUnits(Integer numberOfUnits) {
-		this.numberOfUnits = numberOfUnits;
-	}
-
-	public Set<Storehouse> getStorehouses() {
+	public Map<Storehouse, Integer> getStorehouses() {
 		return storehouses;
 	}
 
-	public void setStorehouses(Set<Storehouse> storehouses) {
+	public void setStorehouses(Map<Storehouse, Integer> storehouses) {
 		this.storehouses = storehouses;
 	}
 
@@ -94,6 +86,5 @@ public class Good {
 
 	public void setManufacturer(Manufacturer manufacturer) {
 		this.manufacturer = manufacturer;
-	}
-	
+	}	
 }

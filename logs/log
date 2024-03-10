@@ -55,3 +55,15 @@
 2024-03-04 16:33:32 ERROR DataSource:46 - Property file not found
 2024-03-04 16:37:11 ERROR DataSource:46 - Property file not found
 2024-03-04 16:38:41 ERROR DataSource:46 - Property file not found
+2024-03-08 17:51:07 ERROR Menu:186 - No value specified for parameter 6.
+2024-03-08 17:54:44 ERROR Menu:186 - No value specified for parameter 6.
+2024-03-08 18:01:51 ERROR Menu:186 - No value specified for parameter 6.
+2024-03-09 23:40:14 ERROR Menu:186 - No value specified for parameter 1.
+2024-03-09 23:42:29 ERROR Menu:186 - No value specified for parameter 1.
+2024-03-09 23:45:46 ERROR Menu:186 - No value specified for parameter 1.
+2024-03-09 23:46:39 ERROR Menu:186 - No value specified for parameter 1.
+2024-03-09 23:48:16 ERROR Menu:186 - No value specified for parameter 1.
+2024-03-09 23:49:48 ERROR Menu:186 - No value specified for parameter 1.
+2024-03-09 23:56:36 ERROR Menu:186 - ResultSet not positioned properly, perhaps you need to call next.
+2024-03-09 23:56:50 ERROR Menu:186 - ResultSet not positioned properly, perhaps you need to call next.
+2024-03-09 23:58:34 ERROR Menu:186 - ResultSet not positioned properly, perhaps you need to call next.

@@ -156,14 +156,14 @@ public class Menu {
 		
 		while(isGoodMenuCycle) {
 			try {
-				System.out.print(">> 1 - Add good.\n>> 2 - Update good info.\n>> 3 - Show good list.\n>> 4 - Delete good.\n>> 5 - Good in storehouses info.\n>> 6 - Exit.\n->");
+				System.out.print(">> 1 - Add good.\n>> 2 - Update good info.\n>> 3 - Show good list.\n>> 4 - Delete good.\n>> 5 - Good full information.\n>> 6 - Exit.\n->");
 				choice = scanner.nextLine();
 				switch(choice) {
 					case "1":
 						GoodActions.createGood(goodRep, scanner);
 						break;
 					case "2":
-						//ManufacturerActions.editManufacturer(manufacturerRep, scanner);
+						GoodActions.editGood(goodRep, scanner);
 						break;
 					case "3":
 						GoodActions.printGoodList(goodRep);
@@ -172,7 +172,7 @@ public class Menu {
 						GoodActions.deleteGood(goodRep, scanner);
 						break;
 					case "5":	
-						//ManufacturerActions.printManufacturerGoods(manufacturerRep, scanner);
+						GoodActions.showStockAvailability(goodRep, scanner);
 						break;
 					case "6":
 						isGoodMenuCycle = false;
