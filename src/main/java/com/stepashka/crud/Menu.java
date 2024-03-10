@@ -83,7 +83,7 @@ public class Menu {
 		
 		while(isStorehouseMenuCycle) {
 			try {
-				System.out.print(">> 1 - Add storehouse.\n>> 2 - Update storehouse info.\n>> 3 - Show storehouse list.\n>> 4 - Delete storehouse.\n>> 5 - Exit.\n->");
+				System.out.print(">> 1 - Add storehouse.\n>> 2 - Update storehouse info.\n>> 3 - Show storehouse list.\n>> 4 - Delete storehouse.\n>> 5 - Add good in storehouse.\n>> 6 - Exit.\n->");
 				choice = scanner.nextLine();
 				switch(choice) {
 					case "1":
@@ -99,13 +99,16 @@ public class Menu {
 						StorehouseActions.deleteStorehouse(storehouseRep, scanner);
 						break;
 					case "5":
+						StorehouseActions.addGood(storehouseRep, goodRep, scanner);
+						break;
+					case "6":
 						isStorehouseMenuCycle = false;
 						break;
 					default:
 						break;		
 				}
 			} catch(NumberFormatException exception) {
-				System.out.println(">>" + exception.getMessage());
+				System.out.println(">>" + exception.getLocalizedMessage());
 			} catch(SQLException exception) {
 				logger.error(exception.getMessage());	
 			}

@@ -4,8 +4,11 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
+
+import com.stepashka.crud.entity.Good;
 import com.stepashka.crud.entity.Storehouse;
 import com.stepashka.crud.repository.AbstractDao;
+import com.stepashka.crud.repository.StorehouseDao;
 
 public class StorehouseActions {
 	
@@ -74,5 +77,39 @@ public class StorehouseActions {
 		Integer storehouseId = Integer.parseInt(scanner.nextLine());
 		
 		return repository.delete(storehouseId);
+	}
+	
+	public static Integer addGood(AbstractDao<Storehouse> storehouseRepository, AbstractDao<Good> goodRepository, Scanner scanner) throws SQLException, NumberFormatException {
+		List<Storehouse> storehouseList = StorehouseActions.printStorehouseList(storehouseRepository);
+		
+		if(!storehouseList.isEmpty()) {
+			System.out.print("select storehouse you want to add good(input №)\n->");
+			Integer storehouseId =  Integer.parseInt(scanner.nextLine());
+			Optional<Storehouse> storehouse = storehouseList.stream().filter(x -> x.getId().equals(storehouseId)).findFirst();
+			if(storehouse.isPresent()) {
+				List<Good> goodList = GoodActions.printGoodList(goodRepository);
+				if(!goodList.isEmpty()) {
+					System.out.print("select good you want to add in storehouse(input №)\n->");
+					Integer goodId = Integer.parseInt(scanner.nextLine());
+					Optional<Good> good = goodList.stream().filter(x -> x.getId().equals(goodId)).findFirst();
+					if(good.isPresent()) {
+						System.out.print("input good quantity\n->");
+						Integer goodNumber = Integer.parseInt(scanner.nextLine());
+						return ((StorehouseDao)storehouseRepository).saveGood(goodId, storehouseId, goodNumber);
+					}
+					else {
+						System.out.print("good not found\n->");
+					}
+				}
+				else {
+					System.out.print("before adding in storehouse, create good in menu good\n->");
+				}
+				
+			}	
+			else {
+				System.out.print(">>storehouse not found\n");
+			}
+		}
+		return 0;
 	}
 }

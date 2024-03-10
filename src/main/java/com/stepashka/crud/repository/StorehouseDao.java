@@ -15,6 +15,7 @@ public class StorehouseDao implements AbstractDao<Storehouse>{
 	private static final String SAVE_SQL = "INSERT INTO storehouse(address, square) VALUES(?, ?)";
 	private static final String DELETE_BY_ID_SQL = "DELETE FROM storehouse WHERE id=?"; 
 	private static final String UPDATE_SQL = "UPDATE storehouse SET address=?, square=? WHERE id=?";
+	private static final String SAVE_GOOD_SQL = "INSERT INTO good_storehouse(id_good, id_stock, good_num) VALUES(?, ?, ?)";
 	
 	@Override
 	public Storehouse findById(Integer id) throws SQLException{
@@ -76,5 +77,15 @@ public class StorehouseDao implements AbstractDao<Storehouse>{
 			statement.setInt(1, id);
 			return statement.executeUpdate();
 		} 
+	}
+	
+	public Integer saveGood(Integer goodId, Integer stockId, Integer goodNumber) throws SQLException{
+		try(Connection connection = DataSource.getConnection();
+				PreparedStatement statement = connection.prepareStatement(SAVE_GOOD_SQL)){
+			statement.setInt(1, goodId);
+			statement.setInt(2, stockId);
+			statement.setInt(3, goodNumber);
+			return statement.executeUpdate();
+		}
 	}
 }

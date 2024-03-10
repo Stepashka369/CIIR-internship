@@ -67,3 +67,7 @@
 2024-03-09 23:56:36 ERROR Menu:186 - ResultSet not positioned properly, perhaps you need to call next.
 2024-03-09 23:56:50 ERROR Menu:186 - ResultSet not positioned properly, perhaps you need to call next.
 2024-03-09 23:58:34 ERROR Menu:186 - ResultSet not positioned properly, perhaps you need to call next.
+2024-03-10 14:11:36 ERROR Menu:113 - ERROR: syntax error at or near "good_storehouse"
+  Position: 8
+2024-03-10 14:12:42 ERROR Menu:113 - ERROR: syntax error at or near "good_storehouse"
+  Position: 8
