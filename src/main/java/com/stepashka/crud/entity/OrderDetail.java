@@ -1,8 +1,8 @@
 package com.stepashka.crud.entity;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Map;
+import java.util.Objects;
 
 public class OrderDetail {
 	private Integer id;
@@ -11,7 +11,7 @@ public class OrderDetail {
 	private String status;
 	private Payment payment;
 	//ManyToMany
-	private Set<Good> goods = new HashSet<>();
+	private Map<Good, Integer> goods;
 	
 	public Integer getId() {
 		return id;
@@ -53,11 +53,32 @@ public class OrderDetail {
 		this.payment = payment;
 	}
 
-	public Set<Good> getGoods() {
+	public Map<Good, Integer> getGoods() {
 		return goods;
 	}
 
-	public void setGoods(Set<Good> goods) {
+	public void setGoods(Map<Good, Integer> goods) {
 		this.goods = goods;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(code, goods, id, orderDate, payment, status);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		OrderDetail other = (OrderDetail) obj;
+		return Objects.equals(code, other.code) && Objects.equals(goods, other.goods) && Objects.equals(id, other.id)
+				&& Objects.equals(orderDate, other.orderDate) && Objects.equals(payment, other.payment)
+				&& Objects.equals(status, other.status);
+	}
+	
+	
 }

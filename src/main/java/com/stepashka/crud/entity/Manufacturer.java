@@ -1,6 +1,5 @@
 package com.stepashka.crud.entity;
 
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -9,7 +8,7 @@ public class Manufacturer {
 	private String name;
 	private String country;
 	//OneToMany
-	private Set<Good> goods = new HashSet<>();
+	private Set<Good> goods;
 	
 	public Integer getId() {
 		return id;

@@ -1,7 +1,6 @@
 package com.stepashka.crud.entity;
 
-import java.util.Map;
-import java.util.Set;
+import java.util.Objects;
 
 public class Good {
 	private Integer id;
@@ -11,10 +10,6 @@ public class Good {
 	private Float price;
 	private String description;
 	private Manufacturer manufacturer;
-	//ManyToMany
-	private Map<Storehouse, Integer> storehouses;
-	//ManyToMany
-	private Set<OrderDetail> orders;
 	
 	public Integer getId() {
 		return id;
@@ -64,27 +59,33 @@ public class Good {
 		this.description = description;
 	}
 
-	public Map<Storehouse, Integer> getStorehouses() {
-		return storehouses;
-	}
-
-	public void setStorehouses(Map<Storehouse, Integer> storehouses) {
-		this.storehouses = storehouses;
-	}
-
-	public Set<OrderDetail> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(Set<OrderDetail> orders) {
-		this.orders = orders;
-	}
-
 	public Manufacturer getManufacturer() {
 		return manufacturer;
 	}
 
 	public void setManufacturer(Manufacturer manufacturer) {
 		this.manufacturer = manufacturer;
-	}	
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(description, guarantee, id, manufacturer, model, name, price);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Good other = (Good) obj;
+		return Objects.equals(description, other.description) && Objects.equals(guarantee, other.guarantee)
+				&& Objects.equals(id, other.id) && Objects.equals(manufacturer, other.manufacturer)
+				&& Objects.equals(model, other.model) && Objects.equals(name, other.name)
+				&& Objects.equals(price, other.price);
+	}
+	
+	
 }
