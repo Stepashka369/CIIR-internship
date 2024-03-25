@@ -1,193 +1,193 @@
-package com.stepashka.crud;
-
-import java.sql.SQLException;
-import java.util.Scanner;
-import org.apache.log4j.Logger;
-
-import com.stepashka.crud.entity.Good;
-import com.stepashka.crud.entity.Manufacturer;
-import com.stepashka.crud.entity.Storehouse;
-import com.stepashka.crud.repository.AbstractDao;
-import com.stepashka.crud.repository.GoodDao;
-import com.stepashka.crud.repository.ManufacturerDao;
-import com.stepashka.crud.repository.StorehouseDao;
-import com.stepashka.crud.utils.GoodActions;
-import com.stepashka.crud.utils.ManufacturerActions;
-import com.stepashka.crud.utils.StorehouseActions;
-
-public class Menu {
-	private static final Logger logger = Logger.getLogger(Menu.class);
-	private Scanner scanner;
-	private AbstractDao<Storehouse> storehouseRep = new StorehouseDao();
-	private AbstractDao<Manufacturer> manufacturerRep = new ManufacturerDao();
-	private AbstractDao<Good> goodRep = new GoodDao();
-	
-	public void mainMenu() {
-		boolean isMainMenuCycle = true;
-		String choice = "";
-		scanner = new Scanner(System.in); 
-		
-		while(isMainMenuCycle) {
-			System.out.print(">> 1 - Admin.\n>> 2 - Client.\n>> 3 - Exit.\n->");
-			choice = scanner.nextLine();
-			switch(choice) {
-				case "1":
-					adminMenu();
-					break;
-				case "2":
-					
-					break;
-				case "3":
-					isMainMenuCycle = false;
-					break;
-				default:
-					
-					break;	
-			}
-		}
-		
-		scanner.close();
-	} 
-
-	
-	private void adminMenu() {
-		boolean isAdminMenuCycle = true;
-		String choice = "";
-		
-		while(isAdminMenuCycle) {
-			System.out.print(">> 1 - Storehouse.\n>> 2 - Manufacturer.\n>> 3 - Good.\n>> 4 - Exit.\n->");
-			choice = scanner.nextLine();
-			switch(choice) {
-				case "1":
-					storehouseActionMenu();
-					break;
-				case "2":
-					manufacturerActionMenu();	
-					break;
-				case "3":
-					goodActionMenu();
-					break;
-				case "4":
-					isAdminMenuCycle = false;
-					break;
-				default:
-					
-					break;	
-			}
-		}
-	}
-	
-	private void storehouseActionMenu() {
-		boolean isStorehouseMenuCycle = true;
-		String choice = "";
-		
-		while(isStorehouseMenuCycle) {
-			try {
-				System.out.print(">> 1 - Add storehouse.\n>> 2 - Update storehouse info.\n>> 3 - Show storehouse list.\n>> 4 - Delete storehouse.\n>> 5 - Add good in storehouse.\n>> 6 - Exit.\n->");
-				choice = scanner.nextLine();
-				switch(choice) {
-					case "1":
-						StorehouseActions.createStorehouse(storehouseRep, scanner);
-						break;
-					case "2":
-						StorehouseActions.editStorehouse(storehouseRep, scanner);
-						break;
-					case "3":
-						StorehouseActions.printStorehouseList(storehouseRep);
-						break;
-					case "4":
-						StorehouseActions.deleteStorehouse(storehouseRep, scanner);
-						break;
-					case "5":
-						StorehouseActions.addGood(storehouseRep, goodRep, scanner);
-						break;
-					case "6":
-						isStorehouseMenuCycle = false;
-						break;
-					default:
-						break;		
-				}
-			} catch(NumberFormatException exception) {
-				System.out.println(">>" + exception.getLocalizedMessage());
-			} catch(SQLException exception) {
-				logger.error(exception.getMessage());	
-			}
-		}
-	}
-	
-	private void manufacturerActionMenu() {
-		boolean isManufacturerMenuCycle = true;
-		String choice = "";
-		
-		while(isManufacturerMenuCycle) {
-			try {
-				System.out.print(">> 1 - Add manufacturer.\n>> 2 - Update manufacturer info.\n>> 3 - Show manufacturer list.\n>> 4 - Delete manufacturer.\n>> 5 - Show manufacturer's goods.\n>> 6 - Exit.\n->");
-				choice = scanner.nextLine();
-				switch(choice) {
-					case "1":
-						ManufacturerActions.createManufacturer(manufacturerRep, scanner);
-						break;
-					case "2":
-						ManufacturerActions.editManufacturer(manufacturerRep, scanner);
-						break;
-					case "3":
-						ManufacturerActions.printManufacturerList(manufacturerRep);
-						break;
-					case "4":
-						ManufacturerActions.deleteManufacturer(manufacturerRep, scanner);
-						break;
-					case "5":	
-						ManufacturerActions.printManufacturerGoods(manufacturerRep, scanner);
-						break;
-					case "6":
-						isManufacturerMenuCycle = false;
-						break;
-					default:
-						break;		
-				}
-			} catch(NumberFormatException exception) {
-				System.out.println(">>" + exception.getMessage());
-			} catch(SQLException exception) {
-				logger.error(exception.getMessage());	
-			}
-		}
-	}
-	
-	private void goodActionMenu() {
-		boolean isGoodMenuCycle = true;
-		String choice = "";
-		
-		while(isGoodMenuCycle) {
-			try {
-				System.out.print(">> 1 - Add good.\n>> 2 - Update good info.\n>> 3 - Show good list.\n>> 4 - Delete good.\n>> 5 - Good full information.\n>> 6 - Exit.\n->");
-				choice = scanner.nextLine();
-				switch(choice) {
-					case "1":
-						GoodActions.createGood(goodRep, scanner);
-						break;
-					case "2":
-						GoodActions.editGood(goodRep, scanner);
-						break;
-					case "3":
-						GoodActions.printGoodList(goodRep);
-						break;
-					case "4":
-						GoodActions.deleteGood(goodRep, scanner);
-						break;
-					case "5":	
-						GoodActions.showStockAvailability(goodRep, scanner);
-						break;
-					case "6":
-						isGoodMenuCycle = false;
-						break;
-					default:
-						break;		
-				}
-			} catch(NumberFormatException exception) {
-				System.out.println(">>" + exception.getMessage());
-			} catch(SQLException exception) {
-				logger.error(exception.getMessage());	
-			}
-		}
-	}
-}
+//package com.stepashka.crud;
+//
+//import java.sql.SQLException;
+//import java.util.Scanner;
+//import org.apache.log4j.Logger;
+//
+//import com.stepashka.crud.entity.Good;
+//import com.stepashka.crud.entity.Manufacturer;
+//import com.stepashka.crud.entity.Storehouse;
+//import com.stepashka.crud.repository.AbstractDao;
+//import com.stepashka.crud.repository.GoodDao;
+//import com.stepashka.crud.repository.ManufacturerDao;
+//import com.stepashka.crud.repository.StorehouseDao;
+//import com.stepashka.crud.utils.GoodActions;
+//import com.stepashka.crud.utils.ManufacturerActions;
+//import com.stepashka.crud.utils.StorehouseActions;
+//
+//public class Menu {
+//	private static final Logger logger = Logger.getLogger(Menu.class);
+//	private Scanner scanner;
+//	private AbstractDao<Storehouse> storehouseRep = new StorehouseDao();
+//	private AbstractDao<Manufacturer> manufacturerRep = new ManufacturerDao();
+//	private AbstractDao<Good> goodRep = new GoodDao();
+//	
+//	public void mainMenu() {
+//		boolean isMainMenuCycle = true;
+//		String choice = "";
+//		scanner = new Scanner(System.in); 
+//		
+//		while(isMainMenuCycle) {
+//			System.out.print(">> 1 - Admin.\n>> 2 - Client.\n>> 3 - Exit.\n->");
+//			choice = scanner.nextLine();
+//			switch(choice) {
+//				case "1":
+//					adminMenu();
+//					break;
+//				case "2":
+//					
+//					break;
+//				case "3":
+//					isMainMenuCycle = false;
+//					break;
+//				default:
+//					
+//					break;	
+//			}
+//		}
+//		
+//		scanner.close();
+//	} 
+//
+//	
+//	private void adminMenu() {
+//		boolean isAdminMenuCycle = true;
+//		String choice = "";
+//		
+//		while(isAdminMenuCycle) {
+//			System.out.print(">> 1 - Storehouse.\n>> 2 - Manufacturer.\n>> 3 - Good.\n>> 4 - Exit.\n->");
+//			choice = scanner.nextLine();
+//			switch(choice) {
+//				case "1":
+//					storehouseActionMenu();
+//					break;
+//				case "2":
+//					manufacturerActionMenu();	
+//					break;
+//				case "3":
+//					goodActionMenu();
+//					break;
+//				case "4":
+//					isAdminMenuCycle = false;
+//					break;
+//				default:
+//					
+//					break;	
+//			}
+//		}
+//	}
+//	
+//	private void storehouseActionMenu() {
+//		boolean isStorehouseMenuCycle = true;
+//		String choice = "";
+//		
+//		while(isStorehouseMenuCycle) {
+//			try {
+//				System.out.print(">> 1 - Add storehouse.\n>> 2 - Update storehouse info.\n>> 3 - Show storehouse list.\n>> 4 - Delete storehouse.\n>> 5 - Add good in storehouse.\n>> 6 - Exit.\n->");
+//				choice = scanner.nextLine();
+//				switch(choice) {
+//					case "1":
+//						StorehouseActions.createStorehouse(storehouseRep, scanner);
+//						break;
+//					case "2":
+//						StorehouseActions.editStorehouse(storehouseRep, scanner);
+//						break;
+//					case "3":
+//						StorehouseActions.printStorehouseList(storehouseRep);
+//						break;
+//					case "4":
+//						StorehouseActions.deleteStorehouse(storehouseRep, scanner);
+//						break;
+//					case "5":
+//						StorehouseActions.addGood(storehouseRep, goodRep, scanner);
+//						break;
+//					case "6":
+//						isStorehouseMenuCycle = false;
+//						break;
+//					default:
+//						break;		
+//				}
+//			} catch(NumberFormatException exception) {
+//				System.out.println(">>" + exception.getLocalizedMessage());
+//			} catch(SQLException exception) {
+//				logger.error(exception.getMessage());	
+//			}
+//		}
+//	}
+//	
+//	private void manufacturerActionMenu() {
+//		boolean isManufacturerMenuCycle = true;
+//		String choice = "";
+//		
+//		while(isManufacturerMenuCycle) {
+//			try {
+//				System.out.print(">> 1 - Add manufacturer.\n>> 2 - Update manufacturer info.\n>> 3 - Show manufacturer list.\n>> 4 - Delete manufacturer.\n>> 5 - Show manufacturer's goods.\n>> 6 - Exit.\n->");
+//				choice = scanner.nextLine();
+//				switch(choice) {
+//					case "1":
+//						ManufacturerActions.createManufacturer(manufacturerRep, scanner);
+//						break;
+//					case "2":
+//						ManufacturerActions.editManufacturer(manufacturerRep, scanner);
+//						break;
+//					case "3":
+//						ManufacturerActions.printManufacturerList(manufacturerRep);
+//						break;
+//					case "4":
+//						ManufacturerActions.deleteManufacturer(manufacturerRep, scanner);
+//						break;
+//					case "5":	
+//						ManufacturerActions.printManufacturerGoods(manufacturerRep, scanner);
+//						break;
+//					case "6":
+//						isManufacturerMenuCycle = false;
+//						break;
+//					default:
+//						break;		
+//				}
+//			} catch(NumberFormatException exception) {
+//				System.out.println(">>" + exception.getMessage());
+//			} catch(SQLException exception) {
+//				logger.error(exception.getMessage());	
+//			}
+//		}
+//	}
+//	
+//	private void goodActionMenu() {
+//		boolean isGoodMenuCycle = true;
+//		String choice = "";
+//		
+//		while(isGoodMenuCycle) {
+//			try {
+//				System.out.print(">> 1 - Add good.\n>> 2 - Update good info.\n>> 3 - Show good list.\n>> 4 - Delete good.\n>> 5 - Good full information.\n>> 6 - Exit.\n->");
+//				choice = scanner.nextLine();
+//				switch(choice) {
+//					case "1":
+//						GoodActions.createGood(goodRep, scanner);
+//						break;
+//					case "2":
+//						GoodActions.editGood(goodRep, scanner);
+//						break;
+//					case "3":
+//						GoodActions.printGoodList(goodRep);
+//						break;
+//					case "4":
+//						GoodActions.deleteGood(goodRep, scanner);
+//						break;
+//					case "5":	
+//						GoodActions.showStockAvailability(goodRep, scanner);
+//						break;
+//					case "6":
+//						isGoodMenuCycle = false;
+//						break;
+//					default:
+//						break;		
+//				}
+//			} catch(NumberFormatException exception) {
+//				System.out.println(">>" + exception.getMessage());
+//			} catch(SQLException exception) {
+//				logger.error(exception.getMessage());	
+//			}
+//		}
+//	}
+//}
