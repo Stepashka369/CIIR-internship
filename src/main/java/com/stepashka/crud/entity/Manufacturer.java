@@ -1,6 +1,7 @@
 package com.stepashka.crud.entity;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class Manufacturer {
@@ -40,5 +41,23 @@ public class Manufacturer {
 
 	public void setGoods(Set<Good> goods) {
 		this.goods = goods;
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(country, goods, id, name);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Manufacturer other = (Manufacturer) obj;
+		return Objects.equals(country, other.country) && Objects.equals(goods, other.goods)
+				&& Objects.equals(id, other.id) && Objects.equals(name, other.name);
 	}
 }

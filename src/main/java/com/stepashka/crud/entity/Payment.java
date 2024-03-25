@@ -1,6 +1,7 @@
 package com.stepashka.crud.entity;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Payment {
 	private Integer id;
@@ -30,4 +31,22 @@ public class Payment {
 	public void setSum(Float sum) {
 		this.sum = sum;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(date, id, sum);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Payment other = (Payment) obj;
+		return Objects.equals(date, other.date) && Objects.equals(id, other.id) && Objects.equals(sum, other.sum);
+	}
+	
 }
