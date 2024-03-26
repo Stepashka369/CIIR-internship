@@ -9,29 +9,29 @@ public class Client {
 	private String lastName;
 	private String phoneNumber;
 	private String address;
-	//OneToMany
+	// OneToMany
 	private Set<OrderDetail> orders;
-	
+
 	public Integer getId() {
 		return id;
 	}
-	
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	public String getFirstName() {
 		return firstName;
 	}
-	
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	
+
 	public String getLastName() {
 		return lastName;
 	}
-	
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
@@ -39,15 +39,15 @@ public class Client {
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-	
+
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
+
 	public String getAddress() {
 		return address;
 	}
-	
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
@@ -59,7 +59,7 @@ public class Client {
 	public void setOrders(Set<OrderDetail> orders) {
 		this.orders = orders;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(address, firstName, id, lastName, orders, phoneNumber);
@@ -79,4 +79,3 @@ public class Client {
 				&& Objects.equals(orders, other.orders) && Objects.equals(phoneNumber, other.phoneNumber);
 	}
 }
-

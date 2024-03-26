@@ -9,18 +9,18 @@ import java.util.List;
 import com.stepashka.crud.datbase.DataSource;
 import com.stepashka.crud.entity.Storehouse;
 
-public class StorehouseDao implements AbstractDao<Storehouse>{
+public class StorehouseDao implements AbstractDao<Storehouse> {
 	private static final String FIND_ID_SQL = "SELECT * FROM storehouse WHERE id=?";
 	private static final String FIND_ALL_SQL = "SELECT * FROM storehouse";
 	private static final String SAVE_SQL = "INSERT INTO storehouse(address, square) VALUES(?, ?)";
-	private static final String DELETE_BY_ID_SQL = "DELETE FROM storehouse WHERE id=?"; 
+	private static final String DELETE_BY_ID_SQL = "DELETE FROM storehouse WHERE id=?";
 	private static final String UPDATE_SQL = "UPDATE storehouse SET address=?, square=? WHERE id=?";
 	private static final String SAVE_GOOD_SQL = "INSERT INTO good_storehouse(id_good, id_stock, good_num) VALUES(?, ?, ?)";
-	
+
 	@Override
-	public Storehouse findById(Integer id) throws SQLException{
-		try(Connection connection = DataSource.getConnection();
-				PreparedStatement statement = connection.prepareStatement(FIND_ID_SQL)){
+	public Storehouse findById(Integer id) throws SQLException {
+		try (Connection connection = DataSource.getConnection();
+				PreparedStatement statement = connection.prepareStatement(FIND_ID_SQL)) {
 			statement.setInt(1, id);
 			ResultSet result = statement.executeQuery();
 			Storehouse storehouse = new Storehouse();
@@ -29,16 +29,16 @@ public class StorehouseDao implements AbstractDao<Storehouse>{
 			storehouse.setAddress(result.getString("address"));
 			storehouse.setSquare(result.getFloat("square"));
 			return storehouse;
-		} 
+		}
 	}
 
 	@Override
-	public List<Storehouse> findAll() throws SQLException{
-		try(Connection connection = DataSource.getConnection();
-				PreparedStatement statement = connection.prepareStatement(FIND_ALL_SQL)){
+	public List<Storehouse> findAll() throws SQLException {
+		try (Connection connection = DataSource.getConnection();
+				PreparedStatement statement = connection.prepareStatement(FIND_ALL_SQL)) {
 			ResultSet result = statement.executeQuery();
 			List<Storehouse> storehouseList = new ArrayList<>();
-			while(result.next()) {
+			while (result.next()) {
 				Storehouse storehouse = new Storehouse();
 				storehouse.setId(result.getInt("id"));
 				storehouse.setAddress(result.getString("address"));
@@ -50,38 +50,38 @@ public class StorehouseDao implements AbstractDao<Storehouse>{
 	}
 
 	@Override
-	public Integer save(Storehouse entity) throws SQLException{
-		try(Connection connection = DataSource.getConnection();
-				PreparedStatement statement = connection.prepareStatement(SAVE_SQL)){
+	public Integer save(Storehouse entity) throws SQLException {
+		try (Connection connection = DataSource.getConnection();
+				PreparedStatement statement = connection.prepareStatement(SAVE_SQL)) {
 			statement.setString(1, entity.getAddress());
 			statement.setFloat(2, entity.getSquare());
 			return statement.executeUpdate();
-		} 
+		}
 	}
 
 	@Override
-	public Integer update(Storehouse entity) throws SQLException{
-		try(Connection connection = DataSource.getConnection();
-				PreparedStatement statement = connection.prepareStatement(UPDATE_SQL)){
+	public Integer update(Storehouse entity) throws SQLException {
+		try (Connection connection = DataSource.getConnection();
+				PreparedStatement statement = connection.prepareStatement(UPDATE_SQL)) {
 			statement.setString(1, entity.getAddress());
 			statement.setFloat(2, entity.getSquare());
 			statement.setInt(3, entity.getId());
 			return statement.executeUpdate();
-		} 
+		}
 	}
 
 	@Override
-	public Integer delete(Integer id) throws SQLException{
-		try(Connection connection = DataSource.getConnection();
-				PreparedStatement statement = connection.prepareStatement(DELETE_BY_ID_SQL)){
+	public Integer delete(Integer id) throws SQLException {
+		try (Connection connection = DataSource.getConnection();
+				PreparedStatement statement = connection.prepareStatement(DELETE_BY_ID_SQL)) {
 			statement.setInt(1, id);
 			return statement.executeUpdate();
-		} 
+		}
 	}
-	
-	public Integer saveGood(Integer goodId, Integer stockId, Integer goodNumber) throws SQLException{
-		try(Connection connection = DataSource.getConnection();
-				PreparedStatement statement = connection.prepareStatement(SAVE_GOOD_SQL)){
+
+	public Integer saveGood(Integer goodId, Integer stockId, Integer goodNumber) throws SQLException {
+		try (Connection connection = DataSource.getConnection();
+				PreparedStatement statement = connection.prepareStatement(SAVE_GOOD_SQL)) {
 			statement.setInt(1, goodId);
 			statement.setInt(2, stockId);
 			statement.setInt(3, goodNumber);

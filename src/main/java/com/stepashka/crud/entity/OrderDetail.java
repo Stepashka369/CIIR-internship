@@ -10,29 +10,29 @@ public class OrderDetail {
 	private String code;
 	private String status;
 	private Payment payment;
-	//ManyToMany
+	// ManyToMany
 	private Map<Good, Integer> goods;
-	
+
 	public Integer getId() {
 		return id;
 	}
-	
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	public LocalDate getOrderDate() {
 		return orderDate;
 	}
-	
+
 	public void setOrderDate(LocalDate orderDate) {
 		this.orderDate = orderDate;
 	}
-	
+
 	public String getCode() {
 		return code;
 	}
-	
+
 	public void setCode(String code) {
 		this.code = code;
 	}
@@ -79,6 +79,5 @@ public class OrderDetail {
 				&& Objects.equals(orderDate, other.orderDate) && Objects.equals(payment, other.payment)
 				&& Objects.equals(status, other.status);
 	}
-	
-	
+
 }

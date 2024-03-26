@@ -9,35 +9,35 @@ public class Delivery {
 	private String curierFirstName;
 	private String curierLastName;
 	private OrderDetail order;
-	
+
 	public Integer getId() {
 		return id;
 	}
-	
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	public LocalDate getDeliveryDate() {
 		return deliveryDate;
 	}
-	
+
 	public void setDeliveryDate(LocalDate deliveryDate) {
 		this.deliveryDate = deliveryDate;
 	}
-	
+
 	public String getCurierFirstName() {
 		return curierFirstName;
 	}
-	
+
 	public void setCurierFirstName(String curierFirstName) {
 		this.curierFirstName = curierFirstName;
 	}
-	
+
 	public String getCurierLastName() {
 		return curierLastName;
 	}
-	
+
 	public void setCurierLastName(String curierLastName) {
 		this.curierLastName = curierLastName;
 	}
@@ -68,5 +68,5 @@ public class Delivery {
 				&& Objects.equals(curierLastName, other.curierLastName)
 				&& Objects.equals(deliveryDate, other.deliveryDate) && Objects.equals(id, other.id)
 				&& Objects.equals(order, other.order);
-	}		
+	}
 }

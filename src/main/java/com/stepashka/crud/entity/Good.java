@@ -10,11 +10,11 @@ public class Good {
 	private Float price;
 	private String description;
 	private Manufacturer manufacturer;
-	
+
 	public Integer getId() {
 		return id;
 	}
-	
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -86,6 +86,5 @@ public class Good {
 				&& Objects.equals(model, other.model) && Objects.equals(name, other.name)
 				&& Objects.equals(price, other.price);
 	}
-	
-	
+
 }
