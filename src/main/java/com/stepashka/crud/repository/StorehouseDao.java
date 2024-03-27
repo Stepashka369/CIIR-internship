@@ -5,13 +5,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import com.stepashka.crud.datbase.DataSource;
+import com.stepashka.crud.entity.Good;
+import com.stepashka.crud.entity.Manufacturer;
 import com.stepashka.crud.entity.Storehouse;
 
 public class StorehouseDao implements AbstractDao<Storehouse> {
-	private static final String FIND_ID_SQL = "SELECT * FROM storehouse WHERE id=?";
-	private static final String FIND_ALL_SQL = "SELECT * FROM storehouse";
+	private static final String FIND_BY_ID_SQL = "SELECT t1.id AS storehouse_id, t1.address, t1.square, t3.id AS good_id, t3.product_name, t3.model, t3.guarantee, t3.price, t3.description, t2.good_num FROM storehouse AS t1 LEFT JOIN good_storehouse AS t2 ON t1.id=t2.id_stock LEFT JOIN good AS t3 ON t2.id_good=t3.id WHERE t1.id=?";
+	private static final String FIND_ALL_SQL = "SELECT t1.id AS storehouse_id, t1.address, t1.square, t3.id AS good_id, t3.product_name, t3.model, t3.guarantee, t3.price, t3.description, t2.good_num FROM storehouse AS t1 LEFT JOIN good_storehouse AS t2 ON t1.id=t2.id_stock LEFT JOIN good AS t3 ON t2.id_good=t3.id ORDER BY t1.id";
 	private static final String SAVE_SQL = "INSERT INTO storehouse(address, square) VALUES(?, ?)";
 	private static final String DELETE_BY_ID_SQL = "DELETE FROM storehouse WHERE id=?";
 	private static final String UPDATE_SQL = "UPDATE storehouse SET address=?, square=? WHERE id=?";
@@ -20,14 +24,26 @@ public class StorehouseDao implements AbstractDao<Storehouse> {
 	@Override
 	public Storehouse findById(Integer id) throws SQLException {
 		try (Connection connection = DataSource.getConnection();
-				PreparedStatement statement = connection.prepareStatement(FIND_ID_SQL)) {
+				PreparedStatement statement = connection.prepareStatement(FIND_BY_ID_SQL)) {
 			statement.setInt(1, id);
 			ResultSet result = statement.executeQuery();
 			Storehouse storehouse = new Storehouse();
 			result.next();
-			storehouse.setId(result.getInt("id"));
+			storehouse.setId(result.getInt("storehouse_id"));
 			storehouse.setAddress(result.getString("address"));
 			storehouse.setSquare(result.getFloat("square"));
+			storehouse.setGoods(new HashMap<>());
+			while (!result.isAfterLast() && result.getInt("good_id") != 0) {
+				Good good = new Good();
+				good.setId(result.getInt("good_id"));
+				good.setName(result.getString("product_name"));
+				good.setModel(result.getString("model"));
+				good.setGuarantee(result.getInt("guarantee"));
+				good.setPrice(result.getFloat("price"));
+				good.setDescription(result.getString("description"));
+				storehouse.getGoods().put(good, result.getInt("good_num"));
+				result.next();
+			}
 			return storehouse;
 		}
 	}
@@ -35,14 +51,33 @@ public class StorehouseDao implements AbstractDao<Storehouse> {
 	@Override
 	public List<Storehouse> findAll() throws SQLException {
 		try (Connection connection = DataSource.getConnection();
-				PreparedStatement statement = connection.prepareStatement(FIND_ALL_SQL)) {
+				PreparedStatement statement = connection.prepareStatement(FIND_ALL_SQL,
+						ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)) {
 			ResultSet result = statement.executeQuery();
 			List<Storehouse> storehouseList = new ArrayList<>();
 			while (result.next()) {
+				Boolean hasGood = false;
+				Integer currentId = result.getInt("storehouse_id");
 				Storehouse storehouse = new Storehouse();
-				storehouse.setId(result.getInt("id"));
+				storehouse.setId(currentId);
 				storehouse.setAddress(result.getString("address"));
 				storehouse.setSquare(result.getFloat("square"));
+				storehouse.setGoods(new HashMap<>());
+				while (!result.isAfterLast() && result.getInt("storehouse_id") == currentId && result.getInt("good_id") != 0) {
+					hasGood = true;
+					Good good = new Good();
+					good.setId(result.getInt("good_id"));
+					good.setName(result.getString("product_name"));
+					good.setModel(result.getString("model"));
+					good.setGuarantee(result.getInt("guarantee"));
+					good.setPrice(result.getFloat("price"));
+					good.setDescription(result.getString("description"));
+					storehouse.getGoods().put(good, result.getInt("good_num"));
+					result.next();
+				}
+				if (hasGood) {
+					result.previous();
+				}
 				storehouseList.add(storehouse);
 			}
 			return storehouseList;
@@ -75,16 +110,6 @@ public class StorehouseDao implements AbstractDao<Storehouse> {
 		try (Connection connection = DataSource.getConnection();
 				PreparedStatement statement = connection.prepareStatement(DELETE_BY_ID_SQL)) {
 			statement.setInt(1, id);
-			return statement.executeUpdate();
-		}
-	}
-
-	public Integer saveGood(Integer goodId, Integer stockId, Integer goodNumber) throws SQLException {
-		try (Connection connection = DataSource.getConnection();
-				PreparedStatement statement = connection.prepareStatement(SAVE_GOOD_SQL)) {
-			statement.setInt(1, goodId);
-			statement.setInt(2, stockId);
-			statement.setInt(3, goodNumber);
 			return statement.executeUpdate();
 		}
 	}

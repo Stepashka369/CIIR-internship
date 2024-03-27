@@ -61,7 +61,7 @@ public class ManufacturerDao implements AbstractDao<Manufacturer> {
 				manufacturer.setCountry(result.getString("country"));
 				manufacturer.setName(result.getString("manufacturer_name"));
 				manufacturer.setGoods(new HashSet<>());
-				while (result.getInt("manufacturer_id") == currentId && result.getInt("good_id") != 0) {
+				while (!result.isAfterLast() && result.getInt("manufacturer_id") == currentId && result.getInt("good_id") != 0) {
 					hasGood = true;
 					Good good = new Good();
 					good.setId(result.getInt("good_id"));

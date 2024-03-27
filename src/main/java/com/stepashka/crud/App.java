@@ -7,16 +7,19 @@ import org.apache.log4j.PropertyConfigurator;
 
 import com.stepashka.crud.entity.Good;
 import com.stepashka.crud.entity.Manufacturer;
+import com.stepashka.crud.entity.Storehouse;
 import com.stepashka.crud.repository.GoodDao;
 import com.stepashka.crud.repository.ManufacturerDao;
+import com.stepashka.crud.repository.StorehouseDao;
 
 public class App {
 	public static void main(String[] args) {
 		PropertyConfigurator.configure("G:\\studies\\CIIR\\CIIR-internship\\src\\main\\resources\\logging.properties");
-		ManufacturerDao repository = new ManufacturerDao();
-		List<Manufacturer> manufacturers;
+		StorehouseDao repository = new StorehouseDao();
+		List<Storehouse> storehouses;
+		//Storehouse storehouse;
 		try {
-			manufacturers = repository.findAll();
+			storehouses = repository.findAll();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
