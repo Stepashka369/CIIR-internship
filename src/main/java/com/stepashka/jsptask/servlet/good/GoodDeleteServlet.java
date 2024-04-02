@@ -1,7 +1,6 @@
 package com.stepashka.jsptask.servlet.good;
 
 import com.stepashka.jsptask.service.GoodService;
-import com.stepashka.jsptask.service.ManufacturerService;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
