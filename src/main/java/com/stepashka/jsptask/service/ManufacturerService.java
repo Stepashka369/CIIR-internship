@@ -15,7 +15,6 @@ public class ManufacturerService {
     public List<Manufacturer> findAll(){
         try {
             return repository.findAll();
-            return manufacturers;
         } catch (SQLException exception) {
             logger.error(exception.getMessage());
         }
