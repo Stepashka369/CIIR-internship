@@ -16,6 +16,15 @@ public class GoodDao implements AbstractDao<Good> {
 	private static final String SAVE_SQL = "INSERT INTO good(product_name, model, guarantee, price, description, id_manufacturer) VALUES(?, ?, ?, ?, ?, ?)";
 	private static final String UPDATE_SQL = "UPDATE good SET product_name=?, model=?, guarantee=?, price=?, description=? WHERE id=?";
 	private static final String DELETE_SQL = "DELETE FROM good WHERE id=?";
+	private static final String COLUMN_GOOD_ID = "good_id";
+	private static final String COLUMN_GOOD_NAME = "product_name";
+	private static final String COLUMN_GOOD_MODEL = "model";
+	private static final String COLUMN_GOOD_GUARANTEE = "guarantee";
+	private static final String COLUMN_GOOD_PRICE = "price";
+	private static final String COLUMN_GOOD_DESCRIPTION = "description";
+	private static final String COLUMN_MANUFACTURER_ID = "manufacturer_id";
+	private static final String COLUMN_MANUFACTURER_NAME = "manufacturer_name";
+	private static final String COLUMN_MANUFACTURER_COUNTRY = "country";
 
 	@Override
 	public Good findById(Integer id) throws SQLException {
@@ -26,15 +35,15 @@ public class GoodDao implements AbstractDao<Good> {
 			Good good = new Good();
 			good.setManufacturer(new Manufacturer());
 			if (result.next()) {
-				good.setId(result.getInt("good_id"));
-				good.setName(result.getString("product_name"));
-				good.setModel(result.getString("model"));
-				good.setGuarantee(result.getInt("guarantee"));
-				good.setPrice(result.getFloat("price"));
-				good.setDescription(result.getString("description"));
-				good.getManufacturer().setId(result.getInt("manufacturer_id"));
-				good.getManufacturer().setName(result.getString("manufacturer_name"));
-				good.getManufacturer().setCountry(result.getString("country"));
+				good.setId(result.getInt(COLUMN_GOOD_ID));
+				good.setName(result.getString(COLUMN_GOOD_NAME));
+				good.setModel(result.getString(COLUMN_GOOD_MODEL));
+				good.setGuarantee(result.getInt(COLUMN_GOOD_GUARANTEE));
+				good.setPrice(result.getFloat(COLUMN_GOOD_PRICE));
+				good.setDescription(result.getString(COLUMN_GOOD_DESCRIPTION));
+				good.getManufacturer().setId(result.getInt(COLUMN_MANUFACTURER_ID));
+				good.getManufacturer().setName(result.getString(COLUMN_MANUFACTURER_NAME));
+				good.getManufacturer().setCountry(result.getString(COLUMN_MANUFACTURER_COUNTRY));
 			}
 			return good;
 		}
@@ -48,16 +57,16 @@ public class GoodDao implements AbstractDao<Good> {
 			List<Good> goodList = new ArrayList<>();
 			while (result.next()) {
 				Good good = new Good();
-				good.setId(result.getInt("good_id"));
-				good.setName(result.getString("product_name"));
-				good.setModel(result.getString("model"));
-				good.setGuarantee(result.getInt("guarantee"));
-				good.setPrice(result.getFloat("price"));
-				good.setDescription(result.getString("description"));
+				good.setId(result.getInt(COLUMN_GOOD_ID));
+				good.setName(result.getString(COLUMN_GOOD_NAME));
+				good.setModel(result.getString(COLUMN_GOOD_MODEL));
+				good.setGuarantee(result.getInt(COLUMN_GOOD_GUARANTEE));
+				good.setPrice(result.getFloat(COLUMN_GOOD_PRICE));
+				good.setDescription(result.getString(COLUMN_GOOD_DESCRIPTION));
 				good.setManufacturer(new Manufacturer());
-				good.getManufacturer().setId(result.getInt("manufacturer_id"));
-				good.getManufacturer().setName(result.getString("manufacturer_name"));
-				good.getManufacturer().setCountry(result.getString("country"));
+				good.getManufacturer().setId(result.getInt(COLUMN_MANUFACTURER_ID));
+				good.getManufacturer().setName(result.getString(COLUMN_MANUFACTURER_NAME));
+				good.getManufacturer().setCountry(result.getString(COLUMN_MANUFACTURER_COUNTRY));
 				goodList.add(good);
 			}
 			return goodList;

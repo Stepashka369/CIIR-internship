@@ -5,6 +5,7 @@ import com.stepashka.jsptask.repository.GoodDao;
 import org.apache.log4j.Logger;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GoodService {
@@ -13,22 +14,20 @@ public class GoodService {
 
     public List<Good> findAll() {
         try {
-            List<Good> goods = repository.findAll();
-            return goods;
+            return repository.findAll();
         } catch (SQLException exception) {
             logger.error(exception.getMessage());
         }
-        return null;
+        return new ArrayList<Good>();
     }
 
     public Good findById(Integer id) {
         try {
-            Good good = repository.findById(id);
-            return good;
+            return repository.findById(id);
         } catch (SQLException exception) {
             logger.error(exception.getMessage());
         }
-        return null;
+        return new Good();
     }
 
     public Integer delete(Integer id) {

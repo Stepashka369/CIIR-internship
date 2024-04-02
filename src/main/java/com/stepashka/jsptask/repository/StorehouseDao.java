@@ -17,6 +17,16 @@ public class StorehouseDao implements AbstractDao<Storehouse> {
 	private static final String SAVE_SQL = "INSERT INTO storehouse(address, square) VALUES(?, ?)";
 	private static final String DELETE_BY_ID_SQL = "DELETE FROM storehouse WHERE id=?";
 	private static final String UPDATE_SQL = "UPDATE storehouse SET address=?, square=? WHERE id=?";
+	private static final String COLUMN_GOOD_ID = "good_id";
+	private static final String COLUMN_GOOD_NUM = "good_num";
+	private static final String COLUMN_GOOD_NAME = "product_name";
+	private static final String COLUMN_GOOD_MODEL = "model";
+	private static final String COLUMN_GOOD_GUARANTEE = "guarantee";
+	private static final String COLUMN_GOOD_PRICE = "price";
+	private static final String COLUMN_GOOD_DESCRIPTION = "description";
+	private static final String COLUMN_STOREHOUSE_ID = "storehouse_id";
+	private static final String COLUMN_STOREHOUSE_ADDRESS = "address";
+	private static final String COLUMN_STOREHOUSE_SQUARE = "square";
 
 	@Override
 	public Storehouse findById(Integer id) throws SQLException {
@@ -26,19 +36,19 @@ public class StorehouseDao implements AbstractDao<Storehouse> {
 			ResultSet result = statement.executeQuery();
 			Storehouse storehouse = new Storehouse();
 			result.next();
-			storehouse.setId(result.getInt("storehouse_id"));
-			storehouse.setAddress(result.getString("address"));
-			storehouse.setSquare(result.getFloat("square"));
+			storehouse.setId(result.getInt(COLUMN_STOREHOUSE_ID));
+			storehouse.setAddress(result.getString(COLUMN_STOREHOUSE_ADDRESS));
+			storehouse.setSquare(result.getFloat(COLUMN_STOREHOUSE_SQUARE));
 			storehouse.setGoods(new HashMap<>());
-			while (!result.isAfterLast() && result.getInt("good_id") != 0) {
+			while (!result.isAfterLast() && result.getInt(COLUMN_GOOD_ID) != 0) {
 				Good good = new Good();
-				good.setId(result.getInt("good_id"));
-				good.setName(result.getString("product_name"));
-				good.setModel(result.getString("model"));
-				good.setGuarantee(result.getInt("guarantee"));
-				good.setPrice(result.getFloat("price"));
-				good.setDescription(result.getString("description"));
-				storehouse.getGoods().put(good, result.getInt("good_num"));
+				good.setId(result.getInt(COLUMN_GOOD_ID));
+				good.setName(result.getString(COLUMN_GOOD_NAME));
+				good.setModel(result.getString(COLUMN_GOOD_MODEL));
+				good.setGuarantee(result.getInt(COLUMN_GOOD_GUARANTEE));
+				good.setPrice(result.getFloat(COLUMN_GOOD_PRICE));
+				good.setDescription(result.getString(COLUMN_GOOD_DESCRIPTION));
+				storehouse.getGoods().put(good, result.getInt(COLUMN_GOOD_NUM));
 				result.next();
 			}
 			return storehouse;
@@ -54,25 +64,25 @@ public class StorehouseDao implements AbstractDao<Storehouse> {
 			List<Storehouse> storehouseList = new ArrayList<>();
 			while (result.next()) {
 				Boolean hasGood = false;
-				Integer currentId = result.getInt("storehouse_id");
+				Integer currentId = result.getInt(COLUMN_STOREHOUSE_ID);
 				Storehouse storehouse = new Storehouse();
 				storehouse.setId(currentId);
-				storehouse.setAddress(result.getString("address"));
-				storehouse.setSquare(result.getFloat("square"));
+				storehouse.setAddress(result.getString(COLUMN_STOREHOUSE_ADDRESS));
+				storehouse.setSquare(result.getFloat(COLUMN_STOREHOUSE_SQUARE));
 				storehouse.setGoods(new HashMap<>());
-				while (!result.isAfterLast() && result.getInt("storehouse_id") == currentId && result.getInt("good_id") != 0) {
+				while (!result.isAfterLast() && result.getInt(COLUMN_STOREHOUSE_ID) == currentId && result.getInt(COLUMN_GOOD_ID) != 0) {
 					hasGood = true;
 					Good good = new Good();
-					good.setId(result.getInt("good_id"));
-					good.setName(result.getString("product_name"));
-					good.setModel(result.getString("model"));
-					good.setGuarantee(result.getInt("guarantee"));
-					good.setPrice(result.getFloat("price"));
-					good.setDescription(result.getString("description"));
-					storehouse.getGoods().put(good, result.getInt("good_num"));
+					good.setId(result.getInt(COLUMN_GOOD_ID));
+					good.setName(result.getString(COLUMN_GOOD_NAME));
+					good.setModel(result.getString(COLUMN_GOOD_MODEL));
+					good.setGuarantee(result.getInt(COLUMN_GOOD_GUARANTEE));
+					good.setPrice(result.getFloat(COLUMN_GOOD_PRICE));
+					good.setDescription(result.getString(COLUMN_GOOD_DESCRIPTION));
+					storehouse.getGoods().put(good, result.getInt(COLUMN_GOOD_NUM));
 					result.next();
 				}
-				if (hasGood) {
+				if (hasGood.equals(true)) {
 					result.previous();
 				}
 				storehouseList.add(storehouse);
