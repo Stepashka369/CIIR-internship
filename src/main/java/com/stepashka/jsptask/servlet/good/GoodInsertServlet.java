@@ -14,27 +14,36 @@ import java.util.List;
 
 @WebServlet(name = "GoodInsertServlet", value = "/good-insert-servlet")
 public class GoodInsertServlet extends HttpServlet {
-    private GoodService goodService = new GoodService();
-    private ManufacturerService manufacturerService = new ManufacturerService();
+    private final GoodService goodService = new GoodService();
+    private final ManufacturerService manufacturerService = new ManufacturerService();
+    private static final Logger logger = Logger.getLogger(GoodInsertServlet.class);
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Manufacturer> manufacturers = manufacturerService.findAll();
-        request.setAttribute("manufacturersList", manufacturers);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/good/goodInsert.jsp");
-        requestDispatcher.forward(request, response);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            List<Manufacturer> manufacturers = manufacturerService.findAll();
+            request.setAttribute("manufacturersList", manufacturers);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/good/goodInsert.jsp");
+            requestDispatcher.forward(request, response);
+        } catch (IOException | ServletException | NumberFormatException exception){
+            logger.error(exception.getMessage());
+        }
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        goodService.save(buildGood(request));
-        List<Good> goods = goodService.findAll();
-        request.setAttribute("goodsList", goods);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/good/goodReadAll.jsp");
-        requestDispatcher.forward(request, response);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+       try {
+           goodService.save(buildGood(request));
+           List<Good> goods = goodService.findAll();
+           request.setAttribute("goodsList", goods);
+           RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/good/goodReadAll.jsp");
+           requestDispatcher.forward(request, response);
+       } catch (IOException | ServletException exception){
+           logger.error(exception.getMessage());
+       }
     }
 
-    private Good buildGood(HttpServletRequest request){
+    private Good buildGood(HttpServletRequest request) throws NumberFormatException{
         Good good = new Good();
         good.setName(request.getParameter("name"));
         good.setModel(request.getParameter("model"));
