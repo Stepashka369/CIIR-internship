@@ -2,6 +2,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.stepashka.jsptask.entity.Good" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="en">
 <html>
 <head>
     <title>Product update page</title>

@@ -21,9 +21,4 @@ public class GoodDeleteServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/good-read-all-servlet");
         requestDispatcher.forward(request, response);
     }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
 }

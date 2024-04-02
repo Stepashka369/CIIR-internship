@@ -23,9 +23,4 @@ public class GoodReadOneServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/good/goodReadOne.jsp");
         requestDispatcher.forward(request, response);
     }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
 }
