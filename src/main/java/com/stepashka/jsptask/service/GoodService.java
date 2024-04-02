@@ -18,7 +18,7 @@ public class GoodService {
         } catch (SQLException exception) {
             logger.error(exception.getMessage());
         }
-        return new ArrayList<Good>();
+        return new ArrayList<>();
     }
 
     public Good findById(Integer id) {

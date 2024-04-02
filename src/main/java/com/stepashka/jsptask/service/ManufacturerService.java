@@ -1,12 +1,11 @@
 package com.stepashka.jsptask.service;
 
-import com.stepashka.jsptask.entity.Good;
 import com.stepashka.jsptask.entity.Manufacturer;
-import com.stepashka.jsptask.repository.GoodDao;
 import com.stepashka.jsptask.repository.ManufacturerDao;
 import org.apache.log4j.Logger;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ManufacturerService {
@@ -15,11 +14,11 @@ public class ManufacturerService {
 
     public List<Manufacturer> findAll(){
         try {
-            List<Manufacturer> manufacturers = repository.findAll();
+            return repository.findAll();
             return manufacturers;
         } catch (SQLException exception) {
             logger.error(exception.getMessage());
         }
-        return null;
+        return new ArrayList<>();
     }
 }

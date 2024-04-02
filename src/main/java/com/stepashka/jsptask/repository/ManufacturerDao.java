@@ -19,7 +19,6 @@ public class ManufacturerDao implements AbstractDao<Manufacturer> {
     private static final String UPDATE_SQL = "UPDATE manufacturer SET manufacturer_name=?, country=? WHERE id=?";
     private static final String DELETE_SQL = "DELETE FROM manufacturer WHERE id=?";
     private static final String COLUMN_GOOD_ID = "good_id";
-    private static final String COLUMN_GOOD_NAME = "product_name";
     private static final String COLUMN_GOOD_MODEL = "model";
     private static final String COLUMN_GOOD_GUARANTEE = "guarantee";
     private static final String COLUMN_GOOD_PRICE = "price";
