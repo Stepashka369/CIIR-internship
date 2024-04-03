@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 
 public class GoodStorehouseDao implements AbstractDao<Storehouse> {
     private static final String SAVE_SQL = "INSERT INTO good_storehouse(id_good, id_stock, good_num) VALUES(?, ?, ?)";
-    private static final String DELETE_SQL = "DELETE FROM good_storehouse WHERE id_good=? AND id_stock=?";
 
     @Override
     public Storehouse findById(Integer id) throws SQLException {
