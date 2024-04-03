@@ -40,7 +40,7 @@ public class GoodService {
         return changes;
     }
 
-    public Integer save(Good entity){
+    public Integer save(Good entity) {
         Integer changes = 0;
         try {
             changes = repository.save(entity);

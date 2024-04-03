@@ -1,9 +1,6 @@
 package com.stepashka.jsptask.service;
 
-import com.stepashka.jsptask.entity.Good;
-import com.stepashka.jsptask.entity.Manufacturer;
 import com.stepashka.jsptask.entity.Storehouse;
-import com.stepashka.jsptask.repository.ManufacturerDao;
 import com.stepashka.jsptask.repository.StorehouseDao;
 import org.apache.log4j.Logger;
 
@@ -14,7 +11,8 @@ import java.util.List;
 public class StorehouseService {
     private final StorehouseDao repository = new StorehouseDao();
     private static final Logger logger = Logger.getLogger(StorehouseService.class);
-    public List<Storehouse> findAll(){
+
+    public List<Storehouse> findAll() {
         try {
             return repository.findAll();
         } catch (SQLException exception) {
@@ -32,7 +30,7 @@ public class StorehouseService {
         return new Storehouse();
     }
 
-    public Integer save(Storehouse entity){
+    public Integer save(Storehouse entity) {
         Integer changes = 0;
         try {
             changes = repository.save(entity);

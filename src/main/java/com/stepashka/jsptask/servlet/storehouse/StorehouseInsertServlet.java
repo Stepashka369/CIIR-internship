@@ -1,17 +1,15 @@
 package com.stepashka.jsptask.servlet.storehouse;
 
-import com.stepashka.jsptask.entity.Good;
-import com.stepashka.jsptask.entity.Manufacturer;
 import com.stepashka.jsptask.entity.Storehouse;
-import com.stepashka.jsptask.service.GoodService;
-import com.stepashka.jsptask.service.ManufacturerService;
 import com.stepashka.jsptask.service.StorehouseService;
-import com.stepashka.jsptask.servlet.good.GoodInsertServlet;
 import org.apache.log4j.Logger;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 

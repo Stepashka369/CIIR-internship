@@ -3,6 +3,7 @@ package com.stepashka.jsptask.repository;
 import com.stepashka.jsptask.database.DataSource;
 import com.stepashka.jsptask.entity.Good;
 import com.stepashka.jsptask.entity.Manufacturer;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -104,7 +105,7 @@ public class GoodDao implements AbstractDao<Good> {
 	@Override
 	public Integer delete(Integer id) throws SQLException {
 		try (Connection connection = DataSource.getConnection();
-				PreparedStatement statement = connection.prepareStatement(DELETE_SQL)) {
+			 PreparedStatement statement = connection.prepareStatement(DELETE_SQL)) {
 			statement.setInt(1, id);
 			return statement.executeUpdate();
 		}

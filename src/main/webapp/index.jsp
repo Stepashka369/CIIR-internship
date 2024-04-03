@@ -8,7 +8,6 @@
 <body>
 <h2>Select entity:</h2>
 <a href="good-read-all-servlet">Good</a><br/>
-<a href="storehouse-read-all-servlet">Manufacturer</a><br/>
-<a href="good-read-all-servlet">Storehouse</a><br/>
+<a href="storehouse-read-all-servlet">Storehouse</a><br/>
 </body>
 </html>

@@ -20,12 +20,10 @@
     <br/><label>Description: <input type="text" name="description" value="<%= good.getDescription() %>"
                                     required></label><br/>
     <br/><label>Manufacturer: <select name="manufacturerId">
-    <option value="<%= good.getManufacturer().getId() %>" selected><%= good.getManufacturer().getName() %>
-    </option>
+    <option value="<%= good.getManufacturer().getId() %>" selected><%= good.getManufacturer().getName() %></option>
     <% for (Manufacturer manufacturer : (List<Manufacturer>) request.getAttribute("manufacturersList")) { %>
     <% if (!manufacturer.getId().equals(good.getManufacturer().getId())) { %>
-    <option value="<%= manufacturer.getId()%>"><%= manufacturer.getName() %>
-    </option>
+    <option value="<%= manufacturer.getId()%>"><%= manufacturer.getName() %></option>
     <% } %>
     <% } %>
 </select></label><br/>

@@ -11,8 +11,7 @@
 <ul>
     <% for (Good good : (List<Good>) request.getAttribute("goodsList")) { %>
     <li>
-        <a href= <%="good-read-one-servlet?goodId=" + good.getId() %>><%= "Product: " + good.getName() %>
-        </a>
+        <a href= <%="good-read-one-servlet?goodId=" + good.getId() %>><%= "Product: " + good.getName() %></a>
     </li>
     <% } %>
 </ul>
