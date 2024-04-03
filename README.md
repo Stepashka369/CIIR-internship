@@ -1,7 +1,8 @@
-<h3>Тема проекта - интернет магазин электротоваров</h3>
-<p>&emsp;- <a href="https://github.com/Stepashka369/CIIR-internship/tree/task_1">1 Задание</a></p>
-<p>&emsp;- <a href="https://github.com/Stepashka369/CIIR-internship/tree/task_2">2 Задание</a></p>
-<p>&emsp;- <a href="https://github.com/Stepashka369/CIIR-internship/tree/task_3">3 Задание</a></p>
-<p>&emsp;- <a href="">4 Задание</a></p>
-<p>&emsp;- <a href="">5 Задание</a></p>
-<p>&emsp;- <a href="">6 Задание</a></p>
+
+<h2>Задание третье &#128196</h2>
+<h3>Создание web приложения:</h3>
+    <p>&emsp;- Написать web-приложение при помощи jsp.</p>
+    <p>&emsp;- использовать наработки из второго задания.</p>
+<h3>Время:</h3> 
+<p>&emsp;- запланированное время на выполнение: 10 часов</p>
+<p>&emsp;- фактическое время выполненя: 17 часов</p>
