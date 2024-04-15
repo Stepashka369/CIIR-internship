@@ -41,8 +41,9 @@ public class GoodController {
 
     @PostMapping
     public ResponseEntity<GoodDTO> createUpdateGood(@RequestBody GoodDTO request){
-        goodService.saveUpdateGood(goodMapper.toEntity(request));
-
+        GoodEntity goodEntity = goodService.saveUpdateGood(goodMapper.toEntity(request));
+        GoodDTO goodDTO = goodMapper.toDTO(goodEntity);
+        return ResponseEntity.ok(goodDTO); //заменить правльно
     }
 
     @DeleteMapping("/{id}")
