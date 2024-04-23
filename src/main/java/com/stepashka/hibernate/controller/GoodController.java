@@ -74,5 +74,4 @@ public class GoodController {
                 .stream().map(item -> goodImageMapper.toDTO(item)).toList();
         return new ResponseEntity<>(goodDTOList, HttpStatus.OK);
     }
-
 }

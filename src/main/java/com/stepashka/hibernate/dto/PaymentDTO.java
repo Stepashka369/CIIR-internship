@@ -1,7 +1,5 @@
 package com.stepashka.hibernate.dto;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
-
 public class PaymentDTO {
     private Integer id;
     private Float sum;

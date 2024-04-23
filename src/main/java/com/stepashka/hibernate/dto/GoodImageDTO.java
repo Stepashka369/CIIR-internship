@@ -1,7 +1,5 @@
 package com.stepashka.hibernate.dto;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class GoodImageDTO {
     private Integer id;
     private Integer goodId;
