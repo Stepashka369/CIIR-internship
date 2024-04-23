@@ -1,15 +1,17 @@
 package com.stepashka.hibernate.service.impl;
 
-import com.stepashka.hibernate.dto.GoodDTO;
+
+import com.stepashka.hibernate.dto.GoodImageDTO;
 import com.stepashka.hibernate.entity.GoodEntity;
+import com.stepashka.hibernate.entity.GoodImageEntity;
 import com.stepashka.hibernate.exception.NotFoundException;
-import com.stepashka.hibernate.mapper.GoodMapper;
+import com.stepashka.hibernate.repository.GoodImageRepository;
 import com.stepashka.hibernate.repository.GoodRepository;
 import com.stepashka.hibernate.service.CRUDService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.parser.Entity;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -17,10 +19,12 @@ import java.util.Optional;
 public class GoodService implements CRUDService {
 
     private GoodRepository goodRepository;
+    private GoodImageRepository goodImageRepository;
 
     @Autowired
-    public GoodService(GoodRepository goodRepository){
+    public GoodService(GoodRepository goodRepository, GoodImageRepository goodImageRepository){
         this.goodRepository = goodRepository;
+        this.goodImageRepository = goodImageRepository;
     }
 
     public List<GoodEntity> getAllGoods(){
@@ -37,5 +41,17 @@ public class GoodService implements CRUDService {
 
     public GoodEntity saveUpdateGood(GoodEntity entity){
        return goodRepository.save(entity);
+    }
+
+    public void deleteGood(Long id){
+        goodRepository.deleteById(id);
+    }
+
+    public GoodImageEntity saveUpdateGoodImage(GoodImageEntity goodImageEntity){
+        return goodImageRepository.save(goodImageEntity);
+    }
+
+    public List<GoodImageEntity> getAllImagesById(Long id) {
+        return goodImageRepository.findAllByGoodId(id);
     }
 }
