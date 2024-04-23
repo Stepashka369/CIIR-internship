@@ -23,7 +23,7 @@ public class GoodService implements CRUDService {
         this.goodImageRepository = goodImageRepository;
     }
 
-    public List<GoodEntity> getAllGoods(){
+    public List<GoodEntity> getAllGoods() {
         return goodRepository.findAll();
     }
 
@@ -35,15 +35,15 @@ public class GoodService implements CRUDService {
         return optionalGood.get();
     }
 
-    public GoodEntity saveUpdateGood(GoodEntity entity){
+    public GoodEntity saveUpdateGood(GoodEntity entity) {
        return goodRepository.save(entity);
     }
 
-    public void deleteGood(Long id){
+    public void deleteGood(Long id) {
         goodRepository.deleteById(id);
     }
 
-    public GoodImageEntity saveUpdateGoodImage(GoodImageEntity goodImageEntity){
+    public GoodImageEntity saveUpdateGoodImage(GoodImageEntity goodImageEntity) {
         return goodImageRepository.save(goodImageEntity);
     }
 
