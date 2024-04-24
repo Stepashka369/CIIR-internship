@@ -119,11 +119,11 @@ public class OrderDetailEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OrderDetailEntity that = (OrderDetailEntity) o;
-        return Objects.equals(id, that.id) && Objects.equals(orderDate, that.orderDate) && Objects.equals(code, that.code) && Objects.equals(status, that.status) && Objects.equals(payment, that.payment) && Objects.equals(client, that.client) && Objects.equals(delivery, that.delivery) && Objects.equals(goods, that.goods);
+        return Objects.equals(id, that.id) && Objects.equals(orderDate, that.orderDate) && Objects.equals(code, that.code) && Objects.equals(status, that.status);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, orderDate, code, status, payment, client, delivery, goods);
+        return Objects.hash(id, orderDate, code, status);
     }
 }

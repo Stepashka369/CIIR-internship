@@ -83,21 +83,15 @@ public class ClientEntity {
 	}
 
 	@Override
-	public int hashCode() {
-		return Objects.hash(address, firstName, id, lastName, orders, phoneNumber);
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		ClientEntity that = (ClientEntity) o;
+		return Objects.equals(id, that.id) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(phoneNumber, that.phoneNumber) && Objects.equals(address, that.address);
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ClientEntity other = (ClientEntity) obj;
-		return Objects.equals(address, other.address) && Objects.equals(firstName, other.firstName)
-				&& Objects.equals(id, other.id) && Objects.equals(lastName, other.lastName)
-				&& Objects.equals(orders, other.orders) && Objects.equals(phoneNumber, other.phoneNumber);
+	public int hashCode() {
+		return Objects.hash(id, firstName, lastName, phoneNumber, address);
 	}
 }

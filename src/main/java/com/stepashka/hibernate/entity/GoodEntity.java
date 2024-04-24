@@ -1,15 +1,7 @@
 package com.stepashka.hibernate.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.util.Objects;
 import java.util.Set;
 
@@ -53,7 +45,7 @@ public class GoodEntity {
 	@ManyToMany
 	@JoinTable(name = "good_storehouse",
 			joinColumns = @JoinColumn(name = "id_good"),
-			inverseJoinColumns = @JoinColumn(name = "id_storehouse"))
+			inverseJoinColumns = @JoinColumn(name = "id_stock"))
 	private Set<StorehouseEntity> storehouses;
 
 	public Integer getId() {
@@ -141,11 +133,11 @@ public class GoodEntity {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		GoodEntity that = (GoodEntity) o;
-		return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(model, that.model) && Objects.equals(guarantee, that.guarantee) && Objects.equals(price, that.price) && Objects.equals(description, that.description) && Objects.equals(manufacturer, that.manufacturer) && Objects.equals(orders, that.orders) && Objects.equals(storehouses, that.storehouses);
+		return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(model, that.model) && Objects.equals(category, that.category) && Objects.equals(guarantee, that.guarantee) && Objects.equals(price, that.price) && Objects.equals(description, that.description);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, name, model, guarantee, price, description, manufacturer, orders, storehouses);
+		return Objects.hash(id, name, model, category, guarantee, price, description);
 	}
 }

@@ -29,7 +29,7 @@ public class StorehouseEntity {
 
 	@ManyToMany
 	@JoinTable(name = "good_storehouse",
-			joinColumns = @JoinColumn(name = "id_storehouse"),
+			joinColumns = @JoinColumn(name = "id_stock"),
 			inverseJoinColumns = @JoinColumn(name = "id_good"))
 	private Set<GoodEntity> goods;
 
@@ -63,6 +63,14 @@ public class StorehouseEntity {
 
 	public void setGoods(Set<GoodEntity> goods) {
 		this.goods = goods;
+	}
+
+	public Boolean addGood(GoodEntity good){
+		return this.goods.add(good);
+	}
+
+	public Boolean deleteGood(GoodEntity good) {
+		return this.goods.remove(good);
 	}
 
 	@Override

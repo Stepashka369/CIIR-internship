@@ -37,7 +37,7 @@ public class GoodController {
 
     @GetMapping
     public ResponseEntity<List<GoodDTO>> getAllGoods(){
-        List<GoodDTO> goodDTOList = goodService.getAllGoods()
+        List<GoodDTO> goodDTOList = goodService.getAll()
                 .stream().map(item -> goodMapper.toDTO(item)).toList();
         return new ResponseEntity<>(goodDTOList, HttpStatus.OK);
     }
@@ -50,14 +50,14 @@ public class GoodController {
 
     @PostMapping
     public ResponseEntity<GoodDTO> createUpdateGood(@RequestBody GoodDTO request){
-        GoodEntity goodEntity = goodService.saveUpdateGood(goodMapper.toEntity(request));
+        GoodEntity goodEntity = goodService.saveUpdate(goodMapper.toEntity(request));
         GoodDTO goodDTO = goodMapper.toDTO(goodEntity);
         return new ResponseEntity<>(goodDTO, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteGood(@PathVariable Long id){
-        goodService.deleteGood(id);
+        goodService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

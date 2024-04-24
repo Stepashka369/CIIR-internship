@@ -72,22 +72,15 @@ public class DeliveryEntity {
 	}
 
 	@Override
-	public int hashCode() {
-		return Objects.hash(courierFirstName, courierLastName, deliveryDate, id, order);
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		DeliveryEntity that = (DeliveryEntity) o;
+		return Objects.equals(id, that.id) && Objects.equals(deliveryDate, that.deliveryDate) && Objects.equals(courierFirstName, that.courierFirstName) && Objects.equals(courierLastName, that.courierLastName);
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		DeliveryEntity other = (DeliveryEntity) obj;
-		return Objects.equals(courierFirstName, other.courierFirstName)
-				&& Objects.equals(courierLastName, other.courierLastName)
-				&& Objects.equals(deliveryDate, other.deliveryDate) && Objects.equals(id, other.id)
-				&& Objects.equals(order, other.order);
+	public int hashCode() {
+		return Objects.hash(id, deliveryDate, courierFirstName, courierLastName);
 	}
 }

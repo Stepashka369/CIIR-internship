@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class GoodService implements CRUDService {
+public class GoodService implements CRUDService<GoodEntity> {
 
     private GoodRepository goodRepository;
     private GoodImageRepository goodImageRepository;
@@ -23,7 +23,8 @@ public class GoodService implements CRUDService {
         this.goodImageRepository = goodImageRepository;
     }
 
-    public List<GoodEntity> getAllGoods() {
+    @Override
+    public List<GoodEntity> getAll() {
         return goodRepository.findAll();
     }
 
@@ -35,11 +36,13 @@ public class GoodService implements CRUDService {
         return optionalGood.get();
     }
 
-    public GoodEntity saveUpdateGood(GoodEntity entity) {
+    @Override
+    public GoodEntity saveUpdate(GoodEntity entity) {
        return goodRepository.save(entity);
     }
 
-    public void deleteGood(Long id) {
+    @Override
+    public void deleteById(Long id) {
         goodRepository.deleteById(id);
     }
 

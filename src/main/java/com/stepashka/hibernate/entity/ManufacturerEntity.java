@@ -66,11 +66,11 @@ public class ManufacturerEntity {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		ManufacturerEntity that = (ManufacturerEntity) o;
-		return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(country, that.country) && Objects.equals(goods, that.goods);
+		return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(country, that.country);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, name, country, goods);
+		return Objects.hash(id, name, country);
 	}
 }
