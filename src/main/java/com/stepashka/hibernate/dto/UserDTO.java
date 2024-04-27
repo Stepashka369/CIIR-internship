@@ -1,6 +1,6 @@
 package com.stepashka.hibernate.dto;
 
-public class ClientDTO {
+public class UserDTO {
     private Integer id;
     private String firstName;
     private String lastName;

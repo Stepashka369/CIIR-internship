@@ -1,22 +1,25 @@
 package com.stepashka.hibernate.controller;
 
 import com.stepashka.hibernate.dto.GoodDTO;
-import com.stepashka.hibernate.dto.ManufacturerDTO;
 import com.stepashka.hibernate.dto.StorehouseDTO;
 import com.stepashka.hibernate.entity.GoodEntity;
-import com.stepashka.hibernate.entity.ManufacturerEntity;
 import com.stepashka.hibernate.entity.StorehouseEntity;
 import com.stepashka.hibernate.exception.NotFoundException;
 import com.stepashka.hibernate.mapper.GoodMapper;
 import com.stepashka.hibernate.mapper.StorehouseMapper;
 import com.stepashka.hibernate.service.impl.StorehouseService;
-import org.apache.catalina.session.StoreBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/storehouses")
@@ -54,7 +57,7 @@ public class StorehouseController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteManufacturer(@PathVariable Long id){
+    public ResponseEntity<Void> deleteStorehouse(@PathVariable Long id){
         storehouseService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
@@ -74,5 +77,17 @@ public class StorehouseController {
         storehouseEntity.addGood(goodEntity);
         storehouseService.saveUpdate(storehouseEntity);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}/products/{goodId}")
+    public ResponseEntity<Void> deleteGoodFromStorehouse(@PathVariable Long id, @PathVariable Integer goodId) throws NotFoundException{
+        StorehouseEntity storehouseEntity = storehouseService.getById(id);
+        Optional<GoodEntity> goodEntityOptional = storehouseEntity.getGoods()
+                .stream().filter(item -> item.getId().equals(goodId)).findFirst();
+        if(goodEntityOptional.isPresent()){
+            storehouseEntity.getGoods().remove(goodEntityOptional.get());
+            storehouseService.saveUpdate(storehouseEntity);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

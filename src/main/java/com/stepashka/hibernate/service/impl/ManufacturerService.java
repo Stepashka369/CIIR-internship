@@ -7,6 +7,7 @@ import com.stepashka.hibernate.service.CRUDService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -26,11 +27,7 @@ public class ManufacturerService implements CRUDService<ManufacturerEntity> {
 
     @Override
     public ManufacturerEntity getById(Long id) throws NotFoundException {
-        Optional<ManufacturerEntity> optionalManufacturer = manufacturerRepository.findById(id);
-        if(optionalManufacturer.isEmpty()){
-            throw new NotFoundException("Manufacturer not found");
-        }
-        return optionalManufacturer.get();
+        return manufacturerRepository.findById(id).orElseThrow(() -> new NotFoundException("Manufacturer not found"));
     }
 
     @Override

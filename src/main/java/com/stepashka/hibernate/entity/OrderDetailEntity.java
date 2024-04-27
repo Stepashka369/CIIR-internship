@@ -37,8 +37,8 @@ public class OrderDetailEntity {
     private PaymentEntity payment;
 
     @ManyToOne
-    @JoinColumn(name = "id_client")
-    private ClientEntity client;
+    @JoinColumn(name = "id_user_detail")
+    private UserEntity user;
 
     @OneToOne
     @JoinColumn(name = "id_delivery")
@@ -90,12 +90,12 @@ public class OrderDetailEntity {
         this.delivery = delivery;
     }
 
-    public ClientEntity getClient() {
-        return client;
+    public UserEntity getUser() {
+        return user;
     }
 
-    public void setClient(ClientEntity client) {
-        this.client = client;
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 
     public Set<GoodEntity> getGoods() {

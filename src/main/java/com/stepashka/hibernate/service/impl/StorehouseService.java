@@ -8,6 +8,7 @@ import com.stepashka.hibernate.service.CRUDService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -27,11 +28,7 @@ public class StorehouseService implements CRUDService<StorehouseEntity> {
 
     @Override
     public StorehouseEntity getById(Long id) throws NotFoundException {
-        Optional<StorehouseEntity> optionalStorehouse = storehouseRepository.findById(id);
-        if(optionalStorehouse.isEmpty()){
-            throw new NotFoundException("Storehouse not found");
-        }
-        return optionalStorehouse.get();
+        return storehouseRepository.findById(id).orElseThrow(() -> new NotFoundException("Storehouse not found"));
     }
 
     @Override

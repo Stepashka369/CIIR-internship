@@ -1,8 +1,6 @@
 package com.stepashka.hibernate.controller;
 
-import com.stepashka.hibernate.dto.GoodDTO;
 import com.stepashka.hibernate.dto.ManufacturerDTO;
-import com.stepashka.hibernate.entity.GoodEntity;
 import com.stepashka.hibernate.entity.ManufacturerEntity;
 import com.stepashka.hibernate.exception.NotFoundException;
 import com.stepashka.hibernate.mapper.ManufacturerMapper;

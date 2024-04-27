@@ -11,6 +11,7 @@ import com.stepashka.hibernate.service.impl.GoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,6 +50,7 @@ public class GoodController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<GoodDTO> createUpdateGood(@RequestBody GoodDTO request){
         GoodEntity goodEntity = goodService.saveUpdate(goodMapper.toEntity(request));
         GoodDTO goodDTO = goodMapper.toDTO(goodEntity);
@@ -56,12 +58,14 @@ public class GoodController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteGood(@PathVariable Long id){
         goodService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PostMapping("/image")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<GoodImageDTO> createUpdateGoodImage(@RequestBody GoodImageDTO request){
         GoodImageEntity goodImageEntity = goodService.saveUpdateGoodImage(goodImageMapper.toEntity(request));
         GoodImageDTO goodImageDTO = goodImageMapper.toDTO(goodImageEntity);
