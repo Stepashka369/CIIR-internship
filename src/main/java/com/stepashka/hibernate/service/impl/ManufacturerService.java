@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
-public class ManufacturerService implements CRUDService<ManufacturerEntity> {
+public class ManufacturerService implements CRUDService<ManufacturerEntity, Long> {
 
     private ManufacturerRepository manufacturerRepository;
 

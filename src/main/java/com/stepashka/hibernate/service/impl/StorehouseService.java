@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
-public class StorehouseService implements CRUDService<StorehouseEntity> {
+public class StorehouseService implements CRUDService<StorehouseEntity, Long> {
 
     private StorehouseRepository storehouseRepository;
 

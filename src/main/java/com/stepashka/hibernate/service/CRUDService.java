@@ -5,14 +5,14 @@ import com.stepashka.hibernate.exception.NotFoundException;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public interface CRUDService<T>{
+public interface CRUDService<T, G>{
 
     List<T> getAll();
 
-    T getById(Long id) throws NotFoundException;
+    T getById(G id) throws NotFoundException;
 
     T saveUpdate(T entity);
 
-    void deleteById(Long id);
+    void deleteById(G id);
 
 }

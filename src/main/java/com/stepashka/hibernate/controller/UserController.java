@@ -33,29 +33,29 @@ public class UserController {
         return new ResponseEntity<>(userDTOList, HttpStatus.OK);
     }
 
-    @GetMapping("/{phoneNumber}")
-    @PreAuthorize("@userService.currentUser.phoneNumber.equals(#phoneNumber)")
-    public ResponseEntity<UserDTO> getUser(@PathVariable String phoneNumber){
-        UserDTO userDTO = userMapper.toDTO(userService.getByPhoneNumber(phoneNumber));
+    @GetMapping("/{email}")
+    @PreAuthorize("@userService.currentUser.email.equals(#email)")
+    public ResponseEntity<UserDTO> getUser(@PathVariable String email){
+        UserDTO userDTO = userMapper.toDTO(userService.getByEmail(email));
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }
 
     @PostMapping
-    @PreAuthorize("@userService.currentUser.phoneNumber.equals(#request.phoneNumber)")
+    @PreAuthorize("@userService.currentUser.email.equals(#request.email)")
     public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO request){
-        UserEntity userEntity = userService.getByPhoneNumber(request.getPhoneNumber());
+        UserEntity userEntity = userService.getByEmail(request.getEmail());
         userEntity.setFirstName(request.getFirstName());
         userEntity.setLastName(request.getLastName());
         userEntity.setAddress(request.getAddress());
-        userEntity.setPhoneNumber(request.getPhoneNumber());
+        userEntity.setEmail(request.getEmail());
         UserDTO userDTO = userMapper.toDTO(userService.saveUpdate(userEntity));
         return new ResponseEntity<>(userDTO, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/{phoneNumber}")
-    @PreAuthorize("@userService.currentUser.phoneNumber.equals(#phoneNumber)")
-    public ResponseEntity<Void> deleteUser(@PathVariable String phoneNumber){
-        userService.deleteByPhoneNumber(phoneNumber);
+    @DeleteMapping("/{email}")
+    @PreAuthorize("@userService.currentUser.email.equals(#email)")
+    public ResponseEntity<Void> deleteUser(@PathVariable String email){
+        userService.deleteByEmail(email);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

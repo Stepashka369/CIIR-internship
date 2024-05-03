@@ -1,5 +1,6 @@
 package com.stepashka.hibernate.security;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -14,12 +15,24 @@ public class SignUpRequest {
     private String lastName;
 
     @NotNull(message = "Could not be null")
-    @Size(min = 1, max = 12, message = "Size must be between 1 and 12")
-    private String phoneNumber;
+    @Email
+    private String email;
 
-   @NotNull(message = "Could not be null")
-   @Size(min = 1, max = 25, message = "Minimal size 1")
+    @NotNull(message = "Could not be null")
+    @Size(min = 1, max = 25, message = "Minimal size 1")
     private String password;
+
+    @NotNull
+    @Size(min = 6, max = 6, message = "Size must be 6")
+    private String code;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -37,12 +50,12 @@ public class SignUpRequest {
         this.lastName = lastName;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {

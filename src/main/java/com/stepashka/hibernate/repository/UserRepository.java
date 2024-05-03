@@ -13,9 +13,9 @@ public interface UserRepository extends CrudRepository<UserEntity, Long> {
 
     List<UserEntity> findAll();
 
-    Optional<UserEntity> findByPhoneNumber(String phoneNumber);
+    Optional<UserEntity> findByEmail(String email);
 
-    boolean existsByPhoneNumber(String phoneNumber);
+    boolean existsByEmail(String email);
 
-    void deleteByPhoneNumber(String phoneNumber);
+    void deleteByEmail(String Email);
 }

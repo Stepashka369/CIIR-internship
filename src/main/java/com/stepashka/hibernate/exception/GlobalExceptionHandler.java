@@ -22,4 +22,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> onUserAlreadyExistsException(UserAlreadyExistsException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.CONFLICT);
     }
+
+    @ExceptionHandler(AccountActivationException.class)
+    public ResponseEntity<String> onAccountActivationException(AccountActivationException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+    }
 }

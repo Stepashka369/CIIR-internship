@@ -36,8 +36,8 @@ public class UserEntity implements UserDetails {
 	@Column(name = "address")
 	private String address;
 
-	@Column(name = "phone_number")
-	private String phoneNumber;
+	@Column(name = "email")
+	private String email;
 
 	@Column(name = "password")
 	private String password;
@@ -61,7 +61,7 @@ public class UserEntity implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		return this.phoneNumber;
+		return this.email;
 	}
 
 	@Override
@@ -108,12 +108,12 @@ public class UserEntity implements UserDetails {
 		this.lastName = lastName;
 	}
 
-	public String getPhoneNumber() {
-		return phoneNumber;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getAddress() {
@@ -149,11 +149,11 @@ public class UserEntity implements UserDetails {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		UserEntity that = (UserEntity) o;
-		return Objects.equals(id, that.id) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(address, that.address) && Objects.equals(phoneNumber, that.phoneNumber) && Objects.equals(password, that.password);
+		return Objects.equals(id, that.id) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(address, that.address) && Objects.equals(email, that.email) && Objects.equals(password, that.password);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, firstName, lastName, address, phoneNumber, password);
+		return Objects.hash(id, firstName, lastName, address, email, password);
 	}
 }

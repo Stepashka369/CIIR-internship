@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class GoodService implements CRUDService<GoodEntity> {
+public class GoodService implements CRUDService<GoodEntity, Long> {
 
     private GoodRepository goodRepository;
     private GoodImageRepository goodImageRepository;

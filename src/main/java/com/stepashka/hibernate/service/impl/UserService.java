@@ -14,7 +14,7 @@ import java.util.List;
 
 
 @Service
-public class UserService implements CRUDService<UserEntity> {
+public class UserService implements CRUDService<UserEntity, Long> {
     private UserRepository userRepository;
 
     @Autowired
@@ -42,27 +42,27 @@ public class UserService implements CRUDService<UserEntity> {
         userRepository.deleteById(id);
     }
 
-    public void deleteByPhoneNumber(String phoneNumber){
-        userRepository.deleteByPhoneNumber(phoneNumber);
+    public void deleteByEmail(String phoneNumber){
+        userRepository.deleteByEmail(phoneNumber);
     }
 
     public UserEntity create(UserEntity user) throws UserAlreadyExistsException {
-        if (userRepository.existsByPhoneNumber(user.getUsername())) {
+        if (userRepository.existsByEmail(user.getUsername())) {
             throw new UserAlreadyExistsException("User with this phone number already exists");
         }
         return userRepository.save(user);
     }
 
-    public UserEntity getByPhoneNumber(String phoneNumber) throws UsernameNotFoundException{
-        return userRepository.findByPhoneNumber(phoneNumber).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    public UserEntity getByEmail(String email) throws UsernameNotFoundException{
+        return userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
     public UserDetailsService userDetailsService() {
-        return this::getByPhoneNumber;
+        return this::getByEmail;
     }
 
     public UserEntity getCurrentUser() {
         var username = SecurityContextHolder.getContext().getAuthentication().getName();
-        return getByPhoneNumber(username);
+        return getByEmail(username);
     }
 }

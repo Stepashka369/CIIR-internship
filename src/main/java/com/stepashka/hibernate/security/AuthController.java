@@ -1,5 +1,8 @@
 package com.stepashka.hibernate.security;
 
+import com.stepashka.hibernate.dto.ActivationCodeDTO;
+import com.stepashka.hibernate.exception.AccountActivationException;
+import com.stepashka.hibernate.exception.NotFoundException;
 import com.stepashka.hibernate.exception.UserAlreadyExistsException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +25,18 @@ public class AuthController {
     }
 
     @PostMapping("/sign-up")
-    public ResponseEntity<JwtAuthenticationResponse> signUp(@RequestBody @Valid SignUpRequest request) throws UserAlreadyExistsException{
+    public ResponseEntity<JwtAuthenticationResponse> signUp(@RequestBody @Valid SignUpRequest request) throws UserAlreadyExistsException, NotFoundException, AccountActivationException {
         return new ResponseEntity<>(authenticationService.signUp(request), HttpStatus.OK);
     }
 
     @PostMapping("/sign-in")
     public ResponseEntity<JwtAuthenticationResponse> signIn(@RequestBody @Valid SignInRequest request) {
         return new ResponseEntity<>(authenticationService.signIn(request), HttpStatus.OK);
+    }
+
+    @PostMapping("/activation")
+    public ResponseEntity<Void> sendVerificationCode(@RequestBody @Valid ActivationCodeRequest request){
+        authenticationService.bindVerificationCode(request);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
